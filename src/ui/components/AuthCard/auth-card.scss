@@ -1,0 +1,59 @@
+@import "/src/ui/scss/variables";
+@import "/src/ui/scss/mixins";
+
+.auth-card {
+    @include flex-full-center;
+
+    width: 100vw;
+    height: 90vh;
+    box-sizing: border-box;
+
+    &__outer-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: $background-light;
+        border-radius: 1rem;
+    }
+
+    &__inner-container {
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+
+        width: 32rem;
+        padding: 2rem 4rem;
+        border-radius: 1rem;
+    }
+
+    &__header {
+        @include text-bold;
+        @include text-2xl;
+        display: flex;
+        justify-content: center;
+    }
+
+    &__logo {
+        margin-bottom: 2rem;
+    }
+
+    &__button {
+        margin-top: 1rem;
+    }
+
+    &__footer {
+        @include flex-full-center;
+        @include text-base;
+        flex-direction: row;
+        background-color: $background-bright;
+        width: 95%;
+        height: 3.5rem;
+        border-radius: 0.75rem;
+        margin: 0.6rem 0;
+    }
+
+    &__link {
+        @include text-link;
+    }
+}
