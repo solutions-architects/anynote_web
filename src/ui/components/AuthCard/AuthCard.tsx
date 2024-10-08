@@ -1,31 +1,19 @@
 import "./auth-card.scss"
 import Logo from "../Logo/Logo"
 import { Link } from "react-router-dom"
-import ControlledInput, { 
-    Props as ControlledInputProps
-} from "../TextInput/ControlledInput"
 import Button from "../Button/Button"
 
 interface Props {
-    inputs: ControlledInputProps[],
     onSubmit: React.MouseEventHandler<HTMLButtonElement>,
-    buttonText: string,
-    headerText: string,
-    footerText: string,
-    footerLinkText: string,
-    footerLinkTo: string,
+    children: React.ReactNode,
+    type: "register" | "login",
 }
 
 export default function AuthCard({
-    inputs,
     onSubmit,
-    buttonText,
-    headerText,
-    footerText,
-    footerLinkText,
-    footerLinkTo,
+    children,
+    type,
  }: Props) {
-    const innerContainerHeight = 22 + inputs.length * 3.5
 
     return (
         <div className={`auth-card`}>
@@ -35,40 +23,44 @@ export default function AuthCard({
             <div className="auth-card__outer-container">
                 <div 
                 className={`auth-card__inner-container`}
-                style={{ height: `${innerContainerHeight}rem` }}
+                style={{ height: type === "login" ? "28rem" : "32rem" }}
                 >
                     <div className="auth-card__header">
-                        { headerText }
+                        {
+                            type === "login" 
+                            ? "Sign in to your account" 
+                            : "Create your Anynote account"
+                        }
                     </div>
-                    {
-                        inputs.map((input) => (
-                            <ControlledInput
-                            value={input.value}
-                            label={input.label}
-                            name={input.name}
-                            onChange={input.onChange}
-                            type={input.type}
-                            sideLinkText={input.sideLinkText}
-                            sideLinkTo={input.sideLinkTo}
-                            />
-                        ))
-                    }
+                    { children }
                     <Button 
                     className="auth-card__button"
                     onClick={onSubmit}
                     >
-                        { buttonText }
+                        { 
+                            type === "login"
+                            ? "Sign in"
+                            : "Create account"
+                        }
                     </Button>
                 </div>
-                
+
                 <div className="auth-card__footer">
-                    { footerText }
+                    {
+                        type === "login"
+                        ? "New to anynote?"
+                        : "Already have an account?"
+                    }
                     &nbsp;
                     <Link 
                     className="auth-card__link" 
-                    to={footerLinkTo} 
+                    to={type === "login" ? "/register" : "/login"}
                     >
-                        { footerLinkText }
+                        {
+                            type === "login"
+                            ? "Create account"
+                            : "Sign in"
+                        }
                     </Link>
                 </div>
             </div>

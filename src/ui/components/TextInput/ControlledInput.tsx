@@ -1,8 +1,7 @@
 import "./controlled-input.scss"
 import { Link } from "react-router-dom"
 
-export interface Props {
-    name: string,
+interface Props {
     onChange: Function,
     label: string,
     value: string,
@@ -13,7 +12,6 @@ export interface Props {
 
 
 export default function ControlledInput({ 
-    name, 
     label, 
     value, 
     onChange, 
@@ -25,7 +23,7 @@ export default function ControlledInput({
         <div className="controlled-input">
             <div className="controlled-input__above">
                 <label 
-                htmlFor={name}
+                htmlFor={label.toLowerCase()}
                 className="controlled-input__label"
                 >
                     { label }
@@ -48,8 +46,8 @@ export default function ControlledInput({
             onChange={(e) => onChange(e)}
             className="controlled-input__input"
             type={type}
-            name={name} 
-            id={name}
+            name={label.toLowerCase()} 
+            id={label.toLowerCase()}
             />
         </div>
     )
