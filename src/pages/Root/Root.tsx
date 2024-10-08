@@ -1,13 +1,13 @@
 import "./root.scss"
-import logo from "../../ui/assets/icons/logo.svg";
+import Logo from "../../ui/components/Logo/Logo"
 import { Link } from "react-router-dom"
 
-function Root() {
+export default function Root() {
     
     return (
         <div className="root">
             <div className="root__logo">
-                <img src={logo} />
+                <Logo />
             </div>
             <Link className="root__link" to="/login">
                 Login page
@@ -27,5 +27,3 @@ function Root() {
         </div>
     )
 }
-
-export default Root

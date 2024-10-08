@@ -1,11 +1,9 @@
 import "./profile.scss"
 
-function Profile() {
+export default function Profile() {
     return (
         <div className="profile">
             Profile page
         </div>
     )
 }
-
-export default Profile

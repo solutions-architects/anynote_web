@@ -1,0 +1,44 @@
+@import "/src/ui/scss/variables";
+@import "/src/ui/scss/mixins";
+
+.controlled-input {
+    @include text-light;
+    display: flex;
+    flex-direction: column;
+
+    &__input {
+        @include text-base;
+
+        width: 100%;
+        box-sizing: border-box;
+        margin-top: 0.5rem;
+        background-color: inherit;
+        color: $light;
+        padding: 0.6rem 1rem;
+        border: 1px solid #656565;
+        border-radius: 0.75rem;
+
+        transition: all 0.25s ease;
+        
+        &:focus {
+            outline: none !important;
+            border-color: $accent;
+        }
+    }
+
+    &__label {
+        @include text-base;
+        @include text-regular;
+    }
+
+    &__above {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    &__side-link {
+        @include text-link;
+    }
+}

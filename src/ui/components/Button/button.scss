@@ -1,0 +1,31 @@
+@import "/src/ui/scss/variables";
+@import "/src/ui/scss/mixins";
+
+.button {
+    height: 2.75rem;
+    border-radius: 1rem;
+
+    &--primary {
+        @include text-regular;
+        @include text-lg;
+        border: none;
+        background-color: $accent;
+        transition: all 0.1s ease;
+
+        &:hover {
+            background-color: $accent-light;
+        }
+
+        &:active {
+            background-color: $accent-dark;
+        }
+    }
+
+    &--secondary {
+
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+}
