@@ -4,6 +4,7 @@ import Workspace from "./pages/Workspace/Workspace"
 import Profile from "./pages/Profile/Profile"
 import Root from "./pages/Root/Root"
 import Landing from "./pages/Landing/Landing"
+import Note from "./pages/Note/Note"
 import { createBrowserRouter } from "react-router-dom"
 
 
@@ -26,10 +27,16 @@ export const router = createBrowserRouter([
     },
     {
         path: "/workspace",
-        element: <Workspace />
-    },
-    {
-        path: "/profile",
-        element: <Profile />
+        element: <Workspace />,
+        children: [
+            {
+                path: "",
+                element: <Note />
+            },
+            {
+                path: "profile",
+                element: <Profile />
+            },
+        ]
     },
 ])
