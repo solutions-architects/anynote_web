@@ -15,11 +15,11 @@ export default function Root() {
             <Link className="root__link" to="/register">
                 Register page
             </Link>
-            <Link className="root__link" to="/workspace">
-                Workspace page
-            </Link>
-            <Link className="root__link" to="/profile">
+            <Link className="root__link" to="/workspace/profile">
                 Profile page
+            </Link>
+            <Link className="root__link" to="/workspace">
+                Note page
             </Link>
             <Link className="root__link" to="/landing">
                 Landing page
