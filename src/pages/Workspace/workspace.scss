@@ -2,5 +2,22 @@
 @import "/src/ui/scss/mixins";
 
 .workspace {
+    position: relative;
 
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+
+    &__page-container {
+        margin-left: $sidebar-width;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 100vh;
+    }
+
+    &__page-container-inner {
+        width: 70%;
+        padding-top: 2rem;
+    }
 }

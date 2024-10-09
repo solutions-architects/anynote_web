@@ -2,5 +2,40 @@
 @import "/src/ui/scss/mixins";
 
 .side-nav {
+    position: fixed;
+    height: 100vh;
+    width: $sidebar-width;
+    box-sizing: border-box;
+    background-color: $background-light;
+    padding: 2rem;
+    z-index: 100;
 
+    .side-nav__top-nav {
+        @include flex-between;
+        padding-bottom: 1.25rem;
+        border-bottom: 2px solid $border-default;
+    }
+
+    .side-nav__workspace-nav {
+        @include flex-between;
+
+        margin-top: 1.25rem;
+    }
+
+    .side-nav__workspace-side {
+        @include flex-between;
+
+        * {
+            margin-left: 1.25rem;
+
+            &:first-child {
+                margin-left: 0;
+            }
+        }
+    }
+
+    .side-nav__logo {
+        @include flex-full-center;
+        height: 2rem;
+    }
 }

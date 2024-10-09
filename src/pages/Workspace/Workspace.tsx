@@ -6,8 +6,10 @@ export default function Workspace() {
     return (
         <div className="workspace">
             <SideNav />
-            <div className="workspace__container">
-                <Outlet />
+            <div className="workspace__page-container">
+                <div className="workspace__page-container-inner">
+                    <Outlet />
+                </div>
             </div>
         </div>
     )
