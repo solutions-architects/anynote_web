@@ -2,6 +2,7 @@ import "./controlled-input.scss"
 import { Link } from "react-router-dom"
 
 interface Props {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
     onChange: Function,
     label: string,
     value: string,

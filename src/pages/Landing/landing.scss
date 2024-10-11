@@ -1,0 +1,120 @@
+@import "/src/ui/scss/variables";
+@import "/src/ui/scss/mixins";
+
+.landing {
+  display: flex;
+  flex-direction: row;
+  gap: 8rem;
+  width: 75%;
+  justify-content: center;
+  padding-top: 3rem;
+
+  &__left {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    gap: 7rem;
+
+    &__logo {
+      width: 10rem;
+      height: 3rem;
+    }
+
+    &__info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 35rem;
+      gap: 2rem;
+      align-items: start;
+
+      &__heading {
+        display: flex;
+        flex-direction: column;
+
+        &__text {
+          @include text-5xl;
+          @include text-bold;
+
+          color: #C7C7C7;
+        }
+      }
+
+      &__body {
+        @include text-xl;
+        @include text-regular;
+
+        max-width: 30rem;
+      }
+
+      &__buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        min-width: 36rem;
+
+        &__primary {
+          @include text-xl;
+          @include text-bold;
+
+          width: 18rem;
+          height: 3rem;
+        }
+
+        &__secondary {
+          @include text-xl;
+          @include text-regular;
+
+          width: 16rem;
+          height: 3rem;
+        }
+      }
+    }
+  }
+
+  &__right {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: end;
+    justify-content: end;
+    gap: 7rem;
+
+    &__buttons {
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+      align-items: center;
+
+      &__width {
+        @include text-2xl;
+
+        width: 10rem;
+      }
+
+      &__text {
+        @include text-lg;
+
+        cursor: pointer;
+        transition: 0.1s all ease;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    &__logo {
+      width: 35rem;
+      height: 31rem;
+    }
+  }
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}

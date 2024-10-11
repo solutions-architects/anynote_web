@@ -16,13 +16,13 @@ export default function AuthCard({
  }: Props) {
 
     return (
-        <div className={`auth-card`}>
+        <div className={"auth-card"}>
             <div className="auth-card__logo">
                 <Logo />
             </div>
             <div className="auth-card__outer-container">
                 <div 
-                className={`auth-card__inner-container`}
+                className={"auth-card__inner-container"}
                 style={{ height: type === "login" ? "28rem" : "32rem" }}
                 >
                     <div className="auth-card__header">
