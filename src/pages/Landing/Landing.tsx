@@ -13,38 +13,41 @@ function Landing() {
     }
     // move container class into the landing hierarchy
     return (
-        <div className="container">
-            <div className="landing">
-                <div className="landing__left">
-                    <div className="landing__left__logo">
+        <div className="landing">
+            <div className="landing__container">
+                <div className="landing__container-left">
+                    <div className="landing__container-left-logo">
                         <Logo />
                     </div>
-                <div className="landing__left__info">
-                    <div className="landing__left__info__heading">
-                        <div className="landing__left__info__heading__text">Any note you want.</div>
-                        <div className="landing__left__info__heading__text">Anywhere you want.</div>
+                <div className="landing__container-left-info">
+                    <div className="landing__container-left-info-heading">
+                        <div className="landing__container-left-info-heading-text">Any note you want.</div>
+                        <div className="landing__container-left-info-heading-text">Anywhere you want.</div>
                     </div>
-                    <div className="landing__left__info__body">Anynote is an open-source app which organizes
+                    <div className="landing__container-left-info-body">Anynote is an open-source app which organizes
                         your notes and synchronizes them among multiple platforms. For free.</div>
-                    <div className="landing__left__info__buttons">
-                        <Button onClick={handleButtonClick} type="primary" className="landing__left__info__buttons__primary">
+                    <div className="landing__container-left-info-buttons">
+                        <Button onClick={handleButtonClick} type="primary"
+                                className="landing__container-left-info-buttons-primary">
                             Download for Windows</Button>
-                        <Button onClick={handleButtonClick} type="secondary" className="landing__left__info__buttons__secondary">
+                        <Button onClick={handleButtonClick} type="secondary"
+                                className="landing__container-left-info-buttons-secondary">
                             Download for Android
                         </Button>
-                        <Button onClick={handleButtonClick} type="secondary" className="landing__left__info__buttons__secondary">
+                        <Button onClick={handleButtonClick} type="secondary"
+                                className="landing__container-left-info-buttons-secondary">
                             Download for Android
                         </Button>
                     </div>
                 </div>
                 </div>
-                <div className="landing__right">
-                    <div className="landing__right__buttons">
-                        <div className="landing__right__buttons__text">Contact us</div>
-                        <Button onClick={handleSignInButton} type="primary" className="landing__right__buttons__width">
+                <div className="landing__container-right">
+                    <div className="landing__container-right-buttons">
+                        <div className="landing__container-right-buttons-text">Contact us</div>
+                        <Button onClick={handleSignInButton} type="primary" className="landing__container-right-buttons-width">
                             Sign in</Button>
                     </div>
-                    <img src={landing} alt="Landing" className="landing__right__logo"/>
+                    <img src={landing} alt="Landing" className="landing__container-right-logo"/>
                 </div>
             </div>
         </div>

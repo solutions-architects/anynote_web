@@ -12,6 +12,7 @@
 
     .side-nav__top-nav {
         @include flex-between;
+
         padding-bottom: 1.25rem;
         border-bottom: 2px solid $border-default;
     }
@@ -36,6 +37,7 @@
 
     .side-nav__logo {
         @include flex-full-center;
+
         height: 2rem;
     }
 }
