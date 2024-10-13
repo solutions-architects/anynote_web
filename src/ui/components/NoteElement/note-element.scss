@@ -1,0 +1,32 @@
+.note-element {
+    display: flex;
+    margin-top: 0.75rem;
+
+    &__icons {
+        display: flex;
+        align-items: center;
+    }
+
+    &__icon {
+        width: 1.5rem;
+        height: 1.5rem;
+        margin-right: 0.6rem;
+
+        &--arrow {
+            width: 1rem;
+            height: 1rem;
+            margin-right: 0.5rem;
+        }
+    }
+
+    &__name {
+        display: flex;
+        align-items: center;
+        user-select: none;
+        margin-top: 0.25rem;
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+}

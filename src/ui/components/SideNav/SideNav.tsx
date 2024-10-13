@@ -1,14 +1,26 @@
 import "./side-nav.scss"
 import Logo from "../Logo/Logo"
 import IconButton from "../IconButton/IconButton"
+import NoteElement from "../NoteElement/NoteElement"
+import { AppDispatch, RootState } from "../../../services/state/store"
+import { useSelector, useDispatch } from "react-redux"
+import { 
+    createFolder, 
+    createNote,
+    deleteFolder,
+    deleteNote
+} from "../../../services/state/notes/notesSlice"
 
 export default function SideNav() {
-    const handleAddNote = () => {
+    const elements = useSelector((state: RootState) => state.notes)
+    const dispatch = useDispatch<AppDispatch>()
 
+    const handleAddNote = () => {
+        dispatch(createNote())
     }
 
     const handleAddFolder = () => {
-
+        dispatch(createFolder())
     }
 
     const handleSortMenu = () => {
@@ -53,6 +65,24 @@ export default function SideNav() {
                     onClick={handleSearchMenu}
                     />
                 </div>
+            </div>
+            <div className="side-nav__elements">
+                {
+                    elements.folders.map((folder) => (
+                        <NoteElement 
+                        key={folder.id}
+                        element={folder}
+                        />
+                    ))
+                }
+                {
+                    elements.notes.filter((note) => !note.parentFolderId).map((note) => (
+                        <NoteElement 
+                        key={note.id}
+                        element={note}
+                        />
+                    ))
+                }
             </div>
         </nav>
     )
