@@ -1,27 +1,18 @@
 import "./side-nav.scss"
 import Logo from "../Logo/Logo"
 import IconButton from "../IconButton/IconButton"
-import NoteElement from "../NoteElement/NoteElement"
+import Note from "../Note/Note"
 import { AppDispatch, RootState } from "../../../services/state/store"
 import { useSelector, useDispatch } from "react-redux"
-import { 
-    createFolder, 
+import {  
     createNote,
-    deleteFolder,
     deleteNote
 } from "../../../services/state/notes/notesSlice"
 
 export default function SideNav() {
-    const elements = useSelector((state: RootState) => state.notes)
+    const notes = useSelector((state: RootState) => state.notes)
+    console.table(notes.notes)
     const dispatch = useDispatch<AppDispatch>()
-
-    const handleAddNote = () => {
-        dispatch(createNote())
-    }
-
-    const handleAddFolder = () => {
-        dispatch(createFolder())
-    }
 
     const handleSortMenu = () => {
 
@@ -48,11 +39,11 @@ export default function SideNav() {
                 <div className="side-nav__workspace-side">
                     <IconButton
                     icon="add_note"
-                    onClick={handleAddNote}
+                    onClick={() => dispatch(createNote("note"))}
                     />
                     <IconButton
                     icon="add_folder"
-                    onClick={handleAddFolder}
+                    onClick={() => dispatch(createNote("folder"))}
                     />
                     <IconButton
                     icon="sort"
@@ -68,18 +59,18 @@ export default function SideNav() {
             </div>
             <div className="side-nav__elements">
                 {
-                    elements.folders.map((folder) => (
-                        <NoteElement 
-                        key={folder.id}
-                        element={folder}
+                    notes.notes.filter((note) => !note.parentFolderId && note.type === "folder").map((note) => (
+                        <Note 
+                        key={note.id}
+                        note={note}
                         />
                     ))
                 }
                 {
-                    elements.notes.filter((note) => !note.parentFolderId).map((note) => (
-                        <NoteElement 
+                    notes.notes.filter((note) => !note.parentFolderId && note.type === "note").map((note) => (
+                        <Note 
                         key={note.id}
-                        element={note}
+                        note={note}
                         />
                     ))
                 }

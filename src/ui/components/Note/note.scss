@@ -1,4 +1,7 @@
-.note-element {
+@import "/src/ui/scss/variables";
+@import "/src/ui/scss/mixins";
+
+.note {
     display: flex;
     margin-top: 0.75rem;
 
@@ -24,6 +27,10 @@
         align-items: center;
         user-select: none;
         margin-top: 0.25rem;
+    }
+
+    &--open {
+        background-color: $light;
     }
 
     &:hover {

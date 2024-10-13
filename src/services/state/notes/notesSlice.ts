@@ -1,57 +1,37 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { Note, Folder } from "../../../types/notes"
-import { currentDateAsString } from "../../../utils/helpers"
-import { calculateNextElementId, calculateNextElementNumber } from "../../../utils/notes"
+import { Note } from "../../../types/notes"
+import { currentDateAsString, capitalize } from "../../../utils/helpers"
 
 export interface NotesState {
-    currentFolder?: number,
     notes: Note[],
-    folders: Folder[],
+    nextNoteId: number,
 }
 
 const initialState: NotesState = {
-    currentFolder: undefined,
     notes: [],
-    folders: [],
+    nextNoteId: 0,
 }
 
 const notesSlice = createSlice({
     name: "notes",
     initialState,
     reducers: {
-        createNote: (state: NotesState) => {
-            const newNote: Note = {
-                id: calculateNextElementId(state),
-                name: `Note ${calculateNextElementNumber(state, "note")}`,
+        createNote: (state: NotesState, action: PayloadAction<"note" | "folder">) => {
+            state.notes.push({
+                id: state.nextNoteId,
+                name: `${capitalize(action.payload)} ${state.nextNoteId}`,
                 contents: "",
                 createdAt: currentDateAsString(),
-                parentFolderId: state.currentFolder as number,
-            }
-
-            state.notes.push(newNote)
-        },
-        deleteNote: (state: NotesState, action: PayloadAction<string>) => {
-            state.notes.some((note, idx) => {
-                if (note.name === action.payload) {
-                    state.notes.splice(idx, 1)
-                    return true;
-                }
+                parentFolderId: undefined,
+                type: action.payload,
+                isOpen: false,
             })
+            state.nextNoteId++;
         },
-        createFolder: (state: NotesState) => {
-            const newFolder: Folder = {
-                id: calculateNextElementId(state),
-                name: `Folder ${calculateNextElementNumber(state, "folder")}`,
-                createdAt: currentDateAsString(),
-                parentFolderId: state.currentFolder as number,
-            }
-
-            state.folders.push(newFolder)
-        },
-        deleteFolder: (state: NotesState, action: PayloadAction<string>) => {
-            state.folders.some((folder, idx) => {
-                if (folder.name === action.payload) {
-                    state.folders.splice(idx, 1)
+        deleteNote: (state: NotesState, action: PayloadAction<number>) => {
+            state.notes.some((note, idx) => {
+                if (note.id === action.payload) {
+                    state.notes.splice(idx, 1)
                     return true;
                 }
             })
@@ -59,6 +39,6 @@ const notesSlice = createSlice({
     },
 })
 
-export const { createNote, deleteNote, createFolder, deleteFolder } = notesSlice.actions
+export const { createNote, deleteNote } = notesSlice.actions
 
 export default notesSlice.reducer
