@@ -13,85 +13,110 @@
     gap: 5rem;
     justify-content: center;
     padding-top: 3rem;
+  }
 
-    &-left {
+  &__heading {
+    display: flex;
+    flex-direction: column;
+
+    &-text {
+      @include text-5xl;
+      @include text-bold;
+
+      color: #C7C7C7;
+    }
+
+    &-buttons {
       display: flex;
-      width: 100%;
-      flex-direction: column;
-      align-items: start;
-      justify-content: start;
-      gap: 7rem;
+      flex-direction: row;
+      gap: 2rem;
+      align-items: center;
 
-      &-logo {
-        width: 10rem;
-        height: 3rem;
+      &-width {
+        @include text-xl;
+
+        width: 8rem;
       }
 
-      &-info {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        min-width: 35rem;
-        gap: 2rem;
-        align-items: start;
+      &-text {
+        @include text-lg;
 
-        &-heading {
-          display: flex;
-          flex-direction: column;
+        cursor: pointer;
+        transition: 0.1s all ease;
 
-          &-text {
-            @include text-5xl;
-            @include text-bold;
-
-            color: #C7C7C7;
-          }
-        }
-
-        &-body {
-          @include text-xl;
-          @include text-regular;
-
-          max-width: 30rem;
-        }
-
-        &-buttons {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 2rem;
-          min-width: 36rem;
-          max-width: 40rem;
-
-          &-primary {
-            @include text-xl;
-
-            width: 18rem;
-            height: 3rem;
-          }
-
-          &-secondary {
-            @include text-xl;
-            @include text-regular;
-
-            width: 16rem;
-            height: 3rem;
-          }
+        &:hover {
+          text-decoration: underline;
         }
       }
     }
+  }
 
-    &-right {
+  &__left {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    gap: 7rem;
+
+    &-logo {
+      width: 10rem;
+      height: 3rem;
+    }
+
+    &-info {
       display: flex;
-      width: 100%;
       flex-direction: column;
-      align-items: end;
-      justify-content: end;
-      gap: 7rem;
+      justify-content: center;
+      min-width: 35rem;
+      gap: 2rem;
+      align-items: start;
+    }
+  }
 
-      &-buttons {
-        display: flex;
-        flex-direction: row;
-        gap: 2rem;
-        align-items: center;
+  &__body {
+    @include text-xl;
+    @include text-regular;
+
+    max-width: 30rem;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    min-width: 36rem;
+    max-width: 40rem;
+
+    &--primary {
+      @include text-xl;
+
+      width: 18rem;
+      height: 3rem;
+    }
+
+    &--secondary {
+      @include text-xl;
+      @include text-regular;
+
+      width: 16rem;
+      height: 3rem;
+    }
+  }
+
+  &__right {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: end;
+    justify-content: end;
+    gap: 7rem;
+
+    &-buttons {
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+      align-items: center;
 
         &-width {
           @include text-xl;
@@ -116,5 +141,4 @@
         height: 31rem;
       }
     }
-  }
 }
