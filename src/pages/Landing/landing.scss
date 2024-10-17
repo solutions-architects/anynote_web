@@ -15,6 +15,23 @@
     padding-top: 3rem;
   }
 
+  &__content {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 7rem;
+
+    &--right {
+      align-items: end;
+      justify-content: end;
+    }
+
+    &--left {
+      align-items: start;
+      justify-content: start;
+    }
+  }
+
   &__heading {
     display: flex;
     flex-direction: column;
@@ -25,63 +42,49 @@
 
       color: #C7C7C7;
     }
+  }
 
-    &-buttons {
-      display: flex;
-      flex-direction: row;
-      gap: 2rem;
-      align-items: center;
+  &__interface {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    align-items: center;
 
-      &-width {
-        @include text-xl;
+    &-width {
+      @include text-xl;
 
-        width: 8rem;
-      }
+      width: 8rem;
+    }
 
-      &-text {
-        @include text-lg;
+    &-text {
+      @include text-lg;
 
-        cursor: pointer;
-        transition: 0.1s all ease;
+      cursor: pointer;
+      transition: 0.1s all ease;
 
-        &:hover {
-          text-decoration: underline;
-        }
+      &:hover {
+        text-decoration: underline;
       }
     }
   }
 
-  &__left {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: start;
-    justify-content: start;
-    gap: 7rem;
-
-    &-logo {
-      width: 10rem;
-      height: 3rem;
-    }
-
-    &-info {
+  &__body {
       display: flex;
       flex-direction: column;
       justify-content: center;
       min-width: 35rem;
       gap: 2rem;
       align-items: start;
+
+    &-text {
+      @include text-xl;
+      @include text-regular;
+
+      max-width: 30rem;
     }
   }
 
-  &__body {
-    @include text-xl;
-    @include text-regular;
-
-    max-width: 30rem;
-  }
-
-  &__buttons {
+  &__buttons-container {
     display: flex;
     flex-wrap: wrap;
     gap: 2rem;
@@ -104,41 +107,13 @@
     }
   }
 
-  &__right {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: end;
-    justify-content: end;
-    gap: 7rem;
+  &__logo-size {
+    width: 10rem;
+    height: 3rem;
+  }
 
-    &-buttons {
-      display: flex;
-      flex-direction: row;
-      gap: 2rem;
-      align-items: center;
-
-        &-width {
-          @include text-xl;
-
-          width: 8rem;
-        }
-
-        &-text {
-          @include text-lg;
-
-          cursor: pointer;
-          transition: 0.1s all ease;
-
-          &:hover {
-            text-decoration: underline;
-          }
-        }
-      }
-
-      &-logo {
-        width: 35rem;
-        height: 31rem;
-      }
-    }
+  &__main-image-size {
+    width: 35rem;
+    height: 31rem;
+  }
 }

@@ -14,18 +14,18 @@ function Landing() {
     return (
         <div className="landing">
             <div className="landing__container">
-                <div className="landing__left">
-                    <div className="landing__left-logo">
+                <div className="landing__content landing__content--left">
+                    <div className="landing__logo-size">
                         <Logo />
                     </div>
-                <div className="landing__left-info">
+                <div className="landing__body">
                     <div className="landing__heading">
                         <div className="landing__heading-text">Any note you want.</div>
                         <div className="landing__heading-text">Anywhere you want.</div>
                     </div>
-                    <div className="landing__body">Anynote is an open-source app which organizes
+                    <div className="landing__body-text">Anynote is an open-source app which organizes
                         your notes and synchronizes them among multiple platforms. For free.</div>
-                    <div className="landing__buttons">
+                    <div className="landing__buttons-container">
                         <Button onClick={handleButtonClick} type="primary"
                                 className="landing__buttons--primary">
                             Download for Windows</Button>
@@ -40,13 +40,13 @@ function Landing() {
                     </div>
                 </div>
                 </div>
-                <div className="landing__right">
-                    <div className="landing__heading-buttons">
-                        <div className="landing__heading-buttons-text">Contact us</div>
-                        <Button onClick={handleSignInButton} type="primary" className="landing__heading-buttons-width">
+                <div className="landing__content landing__content--right">
+                    <div className="landing__interface">
+                        <div className="landing__interface-text">Contact us</div>
+                        <Button onClick={handleSignInButton} type="primary" className="landing__interface-width">
                             Sign in</Button>
                     </div>
-                    <img src={landing} alt="Landing" className="landing__right-logo"/>
+                    <img src={landing} alt="Landing" className="landing__main-image-size"/>
                 </div>
             </div>
         </div>
