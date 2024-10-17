@@ -4,10 +4,12 @@
 .button {
     height: 2.75rem;
     border-radius: 1rem;
+    user-select: none;
 
     &--primary {
         @include text-regular;
         @include text-lg;
+
         border: none;
         background-color: $accent;
         transition: all 0.1s ease;
@@ -22,7 +24,21 @@
     }
 
     &--secondary {
+        @include text-lg;
+        @include text-regular;
 
+        background-color: $background;
+        border: 2px solid $accent;
+        color: $light;
+        transition: all 0.1s ease;
+
+        &:hover {
+            border-color: $accent-light;
+        }
+
+        &:active {
+            border-color: $accent-dark;
+        }
     }
 
     &:hover {

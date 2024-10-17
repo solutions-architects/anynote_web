@@ -1,0 +1,119 @@
+@import "/src/ui/scss/variables";
+@import "/src/ui/scss/mixins";
+
+.landing {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  &__container {
+    display: flex;
+    flex-direction: row;
+    width: 50%;
+    gap: 5rem;
+    justify-content: center;
+    padding-top: 3rem;
+  }
+
+  &__content {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 7rem;
+
+    &--right {
+      align-items: end;
+      justify-content: end;
+    }
+
+    &--left {
+      align-items: start;
+      justify-content: start;
+    }
+  }
+
+  &__heading {
+    display: flex;
+    flex-direction: column;
+
+    &-text {
+      @include text-5xl;
+      @include text-bold;
+
+      color: #C7C7C7;
+    }
+  }
+
+  &__navbar {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    align-items: center;
+
+    &-width {
+      @include text-xl;
+
+      width: 8rem;
+    }
+
+    &-text {
+      @include text-lg;
+
+      cursor: pointer;
+      transition: 0.1s all ease;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 35rem;
+      gap: 2rem;
+      align-items: start;
+
+    &-text {
+      @include text-xl;
+      @include text-regular;
+
+      max-width: 30rem;
+    }
+  }
+
+  &__buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    min-width: 36rem;
+    max-width: 40rem;
+
+    &--primary {
+      @include text-xl;
+
+      width: 18rem;
+      height: 3rem;
+    }
+
+    &--secondary {
+      @include text-xl;
+      @include text-regular;
+
+      width: 16rem;
+      height: 3rem;
+    }
+  }
+
+  &__logo-size {
+    width: 10rem;
+    height: 3rem;
+  }
+
+  &__main-image-size {
+    width: 35rem;
+    height: 31rem;
+  }
+}
