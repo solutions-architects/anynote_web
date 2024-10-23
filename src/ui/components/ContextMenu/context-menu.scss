@@ -1,0 +1,12 @@
+@import "/src/ui/scss/variables";
+@import "/src/ui/scss/mixins";
+
+
+.menu {
+  position: absolute;
+  width: max-content;
+  background-color: #242424;
+  border: 2px solid $border-default;
+  border-radius: 10px;
+  box-sizing: border-box;
+}

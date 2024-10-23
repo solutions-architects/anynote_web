@@ -43,7 +43,7 @@ function Landing() {
                 </div>
                 <div className="landing__content landing__content--right">
                     <div className="landing__navbar">
-                        <Link className="landing__navbar-text" to={''}>Contact us</Link>
+                        <Link className="landing__navbar-text" to={""}>Contact us</Link>
                         <Button onClick={handleSignInButton} type="primary" className="landing__navbar-width">
                             Sign in</Button>
                     </div>

@@ -1,7 +1,6 @@
 import "./side-nav.scss"
 import Logo from "../Logo/Logo"
 import IconButton from "../IconButton/IconButton"
-
 export default function SideNav() {
     const handleAddNote = () => {
 
@@ -12,7 +11,6 @@ export default function SideNav() {
     }
 
     const handleSortMenu = () => {
-
     }
 
     const handleSearchMenu = () => {
@@ -44,16 +42,18 @@ export default function SideNav() {
                     />
                     <IconButton
                     icon="sort"
-                    onClick={handleSortMenu}
-                    />
+                    onClick={handleSortMenu}/>
                 </div>
                 <div className="side-nav__workspace-side">
                     <IconButton
                     icon="search"
                     onClick={handleSearchMenu}
+
                     />
                 </div>
             </div>
         </nav>
+
+
     )
 }

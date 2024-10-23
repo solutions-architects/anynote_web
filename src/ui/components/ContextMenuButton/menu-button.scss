@@ -1,0 +1,43 @@
+@import "/src/ui/scss/variables";
+@import "/src/ui/scss/mixins";
+
+.button {
+  @include text-regular;
+  @include text-xl;
+  @include flex-between;
+
+  min-width: 15rem;
+  color: $light;
+  width: 100%;
+  transition: all 0.1s ease;
+  background-color: #242424;
+  border: none;
+  padding: 1rem;
+  border-radius: inherit;
+
+  &__icon {
+    height: 1.5rem;
+    width: 1.5rem;
+
+    &--left {
+      margin-right: 1rem;
+    }
+  }
+
+  &__container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: $background-bright;
+  }
+
+  &:active {
+    background-color: $background-light;
+  }
+
+
+}
