@@ -7,9 +7,9 @@
     width: $sidebar-width;
     box-sizing: border-box;
     background-color: $background-light;
-    padding: 2rem;
+    padding: 2rem 1.25rem;
     z-index: 100;
-    overflow-y: scroll;
+    overflow: auto;
 
     &__top-nav {
         @include flex-between;
@@ -37,12 +37,12 @@
 
     &__logo {
         @include flex-full-center;
-        height: 2rem;
+        height: 1.75rem;
     }
 
-    &__elements {
+    &__notes {
         display: flex;
         flex-direction: column;
-        margin-top: 1rem;
+        margin-top: 0.75rem;
     }
 }

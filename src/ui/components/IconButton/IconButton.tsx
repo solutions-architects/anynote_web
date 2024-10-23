@@ -34,7 +34,7 @@ interface IconButtonProps {
     linkTo?: string,
 }
 
-function IconButton({ icon, onClick, linkTo, size = "default" }: IconButtonProps) {
+function IconButton({ icon, onClick, linkTo, size = "small" }: IconButtonProps) {
     const Icon = iconMap[icon]
 
     return (
