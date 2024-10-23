@@ -5,16 +5,15 @@ import Note from "../Note/Note"
 import Folder from "../Folder/Folder"
 import { AppDispatch, RootState } from "../../../services/state/store"
 import { useSelector, useDispatch } from "react-redux"
-import {  
-    createNote,
-    createFolder,
-    
-} from "../../../services/state/notes/elementSlice"
+import { createNote } from "../../../services/state/slices/noteSlice"
+import { createFolder } from "../../../services/state/slices/folderSlice"
 
 export default function SideNav() {
-    const elements = useSelector((state: RootState) => state.elements)
-    console.table(elements.notes)
+    const notes = useSelector((state: RootState) => state.notes.notes)
+    const folders = useSelector((state: RootState) => state.folders.folders)
     const dispatch = useDispatch<AppDispatch>()
+    console.log("FOLDERS")
+    console.log(folders)
 
     const handleSortMenu = () => {
 
@@ -61,7 +60,7 @@ export default function SideNav() {
             </div>
             <div className="side-nav__notes">
                 {
-                    elements.folders.filter((folder) => !folder.parentFolderId).map((folder) => (
+                    folders.filter((folder) => !folder.parentFolderId).map((folder) => (
                         <Folder 
                         key={folder.id}
                         folder={folder}
@@ -69,7 +68,7 @@ export default function SideNav() {
                     ))
                 }
                 {
-                    elements.notes.filter((note) => !note.parentFolderId).map((note) => (
+                    notes.filter((note) => !note.parentFolderId).map((note) => (
                         <Note 
                         key={note.id}
                         note={note}

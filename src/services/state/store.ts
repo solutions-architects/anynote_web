@@ -1,9 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit"
-import elementsReducer from "./notes/elementSlice"
+import folderReducer from "./slices/folderSlice"
+import noteReducer from "./slices/noteSlice"
+
 
 export const store = configureStore({
     reducer: {
-        elements: elementsReducer,
+        notes: noteReducer,
+        folders: folderReducer,
     },
 })
 

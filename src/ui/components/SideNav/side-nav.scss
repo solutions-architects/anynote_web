@@ -9,7 +9,8 @@
     background-color: $background-light;
     padding: 2rem 1.25rem;
     z-index: 100;
-    overflow: auto;
+    overflow-y: auto;
+    resize: horizontal;
 
     &__top-nav {
         @include flex-between;

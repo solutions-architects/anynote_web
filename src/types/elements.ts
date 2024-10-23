@@ -14,5 +14,5 @@ export type Note = {
     editedAt?: string,
     isOpen: boolean,
     parentFolderId?: number,
-    contents?: string,
+    contents: string,
 }

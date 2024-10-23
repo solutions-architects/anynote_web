@@ -20,6 +20,9 @@
     padding-left: 0.5rem;
     height: 2rem;
     border-radius: 0.5rem;
+    text-wrap: nowrap;
+    position: relative;
+    resize: horizontal;
 
     &__icons {
         display: flex;
