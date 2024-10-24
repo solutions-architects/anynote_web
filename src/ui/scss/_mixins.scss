@@ -16,13 +16,11 @@
 
 @mixin sidebar-element {
     display: flex;
-    margin-top: 0.35rem;
-    padding-left: 0.5rem;
-    height: 2rem;
+    height: 2.25rem;
     border-radius: 0.5rem;
-    text-wrap: nowrap;
     position: relative;
     resize: horizontal;
+    text-wrap: nowrap;
 
     &__icons {
         display: flex;

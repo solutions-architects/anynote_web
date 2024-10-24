@@ -28,7 +28,22 @@ export function getNestingLevel(folders: Folder[], parentFolderId?: number): num
     return nestingLevel
 }
 
+export function isInside(folders: Folder[], outerFolder: Folder, innerFolder: Folder): boolean {
+    let currentParentFolderId = innerFolder.parentFolderId
+
+    while (currentParentFolderId) {
+        let idx = getElementIdxById(folders, currentParentFolderId)
+    
+        if (folders[idx].id === outerFolder.id) {
+            return true;
+        }
+
+        currentParentFolderId = folders[idx].parentFolderId
+    }
+
+    return false
+}
+
 export function isNote(element: Note | Folder): element is Note {
-    console.log((<Note>element).contents !== undefined)
     return (<Note>element).contents !== undefined
 }

@@ -7,19 +7,36 @@ import { AppDispatch, RootState } from "../../../services/state/store"
 import { useSelector, useDispatch } from "react-redux"
 import { createNote } from "../../../services/state/slices/noteSlice"
 import { createFolder } from "../../../services/state/slices/folderSlice"
+import { Folder as FolderType, Note as NoteType } from "../../../types/elements"
+import { isNote } from "../../../utils/elements"
+import { setParentFolderForFolder } from "../../../services/state/slices/folderSlice"
+import { setParentFolderForNote } from "../../../services/state/slices/noteSlice"
 
 export default function SideNav() {
     const notes = useSelector((state: RootState) => state.notes.notes)
     const folders = useSelector((state: RootState) => state.folders.folders)
     const dispatch = useDispatch<AppDispatch>()
-    console.log("FOLDERS")
-    console.log(folders)
 
-    const handleSortMenu = () => {
-
+    const handleOnDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+        e.preventDefault()
+        e.stopPropagation()
     }
 
-    const handleSearchMenu = () => {
+    const handleOnDrop = (e: React.DragEvent<HTMLDivElement>) => {
+        const draggedElement: FolderType | NoteType = JSON.parse(
+            e.dataTransfer.getData("element")
+        )
+
+        const action = {
+            id: draggedElement.id,
+            newParentFolderId: undefined,
+        }
+
+        if (isNote(draggedElement)) {
+            dispatch(setParentFolderForNote(action))
+        } else {
+            dispatch(setParentFolderForFolder(action))
+        }
 
     }
 
@@ -48,13 +65,11 @@ export default function SideNav() {
                     />
                     <IconButton
                     icon="sort"
-                    onClick={handleSortMenu}
                     />
                 </div>
                 <div className="side-nav__workspace-side">
                     <IconButton
                     icon="search"
-                    onClick={handleSearchMenu}
                     />
                 </div>
             </div>
@@ -76,6 +91,10 @@ export default function SideNav() {
                     ))
                 }
             </div>
+            <div className="side-nav__drop-area"
+            onDragOver={handleOnDragOver}
+            onDrop={handleOnDrop}
+            />
         </nav>
     )
 }

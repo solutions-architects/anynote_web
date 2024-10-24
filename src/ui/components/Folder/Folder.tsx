@@ -1,12 +1,13 @@
 import "./folder.scss"
 import Note from "../Note/Note"
+import { setParentFolderAction } from "../../../types/actions"
 import { Folder as FolderType, Note as NoteType } from "../../../types/elements"
 import { FolderIcon, ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline"
 import { AppDispatch, RootState } from "../../../services/state/store"
 import { useSelector, useDispatch } from "react-redux"
 import { setParentFolderForNote } from "../../../services/state/slices/noteSlice"
 import { toggleOpen, setParentFolderForFolder } from "../../../services/state/slices/folderSlice"
-import { getNestingLevel, isNote } from "../../../utils/elements"
+import { getNestingLevel, isInside, isNote } from "../../../utils/elements"
 
 
 interface Props {
@@ -27,18 +28,25 @@ export default function Folder({ folder, paddingLeftRem = 0 }: Props) {
         e.stopPropagation()
     }
 
-    const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    const handleOnDrop = (e: React.DragEvent<HTMLDivElement>) => {
         const draggedElement: FolderType | NoteType = JSON.parse(e.dataTransfer.getData("element"))
-        if (draggedElement.id === folder.id) {
-            return
-        }
-
-        const action = {
+        const isElementNote = isNote(draggedElement)
+        
+        let action: setParentFolderAction = {
             id: draggedElement.id,
             newParentFolderId: folder.id,
         }
 
-        if (isNote(draggedElement)) {
+        if (!isElementNote && draggedElement.id === folder.id) {
+            return
+        }
+
+        if (!isElementNote && isInside(folders, draggedElement, folder)) {
+            return
+        }
+
+
+        if (isElementNote) {
             dispatch(setParentFolderForNote(action))
         } else {
             dispatch(setParentFolderForFolder(action))
@@ -50,12 +58,12 @@ export default function Folder({ folder, paddingLeftRem = 0 }: Props) {
         <>
             <div
             className={`folder`}
-            onDragStart={(e) => handleOnDragStart(e)}
-            onDragOver={(e) => handleOnDragOver(e)}
-            onDrop={((e) => handleDrop(e))}
+            onDragStart={handleOnDragStart}
+            onDragOver={handleOnDragOver}
+            onDrop={handleOnDrop}
             draggable
             onClick={() => dispatch(toggleOpen(folder.id))}
-            style={{paddingLeft: `${paddingLeftRem}rem`}}
+            style={{paddingLeft: `${paddingLeftRem + 0.5}rem`}}
             >
                 <div className="folder__icons">
                     {
@@ -79,17 +87,18 @@ export default function Folder({ folder, paddingLeftRem = 0 }: Props) {
                         {
                             folders.filter((f) => f.parentFolderId === folder.id).map((f) => {
                                 return ( <Folder
-                                    paddingLeftRem={getNestingLevel(folders, f.parentFolderId)}
+                                    paddingLeftRem={getNestingLevel(folders, f.parentFolderId) * 1.62}
                                     folder={f}
-                                    key={folder.name}
+                                    key={`folder ${f.id}`}
                                 />)
                             })
                         }
                         {
                             notes.filter((note) => note.parentFolderId === folder.id).map((note) => (
                                 <Note
+                                paddingLeftRem={getNestingLevel(folders, note.parentFolderId) * 1.62}
                                 note={note}
-                                key={note.name}
+                                key={`note ${note.id}`}
                                 />
                             ))
                         }
