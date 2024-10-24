@@ -3,8 +3,8 @@ import Register from "./pages/Register/Register"
 import Workspace from "./pages/Workspace/Workspace"
 import Profile from "./pages/Profile/Profile"
 import Root from "./pages/Root/Root"
+import NoteEdit from "./pages/Note/NoteEdit"
 import Landing from "./pages/Landing/Landing"
-import Note from "./pages/Note/Note"
 import { createBrowserRouter } from "react-router-dom"
 
 
@@ -31,7 +31,7 @@ export const router = createBrowserRouter([
         children: [
             {
                 path: "",
-                element: <Note />
+                element: <NoteEdit />
             },
             {
                 path: "profile",

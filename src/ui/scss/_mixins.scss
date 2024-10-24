@@ -14,6 +14,47 @@
     align-items: center;
 }
 
+@mixin sidebar-element {
+    display: flex;
+    height: 2.25rem;
+    border-radius: 0.5rem;
+    position: relative;
+    resize: horizontal;
+    text-wrap: nowrap;
+
+    &__icons {
+        display: flex;
+        align-items: center;
+    }
+
+    &__icon {
+        width: 1.25rem;
+        height: 1.25rem;
+        margin-right: 0.6rem;
+
+        &--arrow {
+            width: 1rem;
+            height: 1rem;
+        }
+    }
+
+    &__name {
+        display: flex;
+        align-items: center;
+        user-select: none;
+        margin-top: 0.15rem;
+    }
+
+    &--open {
+        background-color: $light;
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-color: rgba($light, 0.1);
+    }
+}
+
 @mixin text-link {
     color: $accent;
 

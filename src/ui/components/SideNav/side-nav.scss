@@ -7,23 +7,26 @@
     width: $sidebar-width;
     box-sizing: border-box;
     background-color: $background-light;
-    padding: 2rem;
+    padding: 2rem 1.25rem;
     z-index: 100;
+    overflow-y: auto;
+    overflow-x: hidden;
+    resize: horizontal;
 
-    .side-nav__top-nav {
+    &__top-nav {
         @include flex-between;
 
         padding-bottom: 1.25rem;
         border-bottom: 2px solid $border-default;
     }
 
-    .side-nav__workspace-nav {
+    &__workspace-nav {
         @include flex-between;
 
         margin-top: 1.25rem;
     }
 
-    .side-nav__workspace-side {
+    &__workspace-side {
         @include flex-between;
 
         * {
@@ -35,9 +38,19 @@
         }
     }
 
-    .side-nav__logo {
+    &__logo {
         @include flex-full-center;
+        height: 1.75rem;
+    }
 
-        height: 2rem;
+    &__notes {
+        display: flex;
+        flex-direction: column;
+        margin-top: 0.75rem;
+    }
+
+    &__drop-area {
+        height: 4rem;
+        width: 100%;
     }
 }

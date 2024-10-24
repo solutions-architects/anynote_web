@@ -23,7 +23,7 @@ interface MenuButtonProps {
     className?: string,
 }
 
-function MenuButton({children, className, onClick, iconLeft=null, iconRight=null}: MenuButtonProps) {
+function MenuButton({children, className, onClick, iconLeft="settings", iconRight="arrowRight"}: MenuButtonProps) {
     const IconLeft = iconLeftMap[iconLeft]
     const IconRight = iconRightMap[iconRight]
     return (
