@@ -3,6 +3,7 @@
 
 .controlled-input {
     @include text-light;
+
     display: flex;
     flex-direction: column;
 
@@ -17,7 +18,6 @@
         padding: 0.6rem 1rem;
         border: 1px solid #656565;
         border-radius: 0.75rem;
-
         transition: all 0.25s ease;
         
         &:focus {

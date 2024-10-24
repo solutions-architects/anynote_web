@@ -1,16 +1,12 @@
 @import "/src/ui/scss/variables";
 @import "/src/ui/scss/mixins";
 
-.context-menu {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    z-index: 100;
-    background-color: $background-bright;
-    width: 10rem;
-    padding: 2rem;
 
-    &--hidden {
-        display: none;
-    }
+.menu {
+  position: absolute;
+  width: max-content;
+  background-color: #242424;
+  border: 2px solid $border-default;
+  border-radius: 10px;
+  box-sizing: border-box;
 }

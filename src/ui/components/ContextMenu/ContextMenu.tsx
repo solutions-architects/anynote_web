@@ -1,33 +1,25 @@
-import React from "react"
 import "./context-menu.scss"
+import {ReactNode} from "react";
 
-interface Props { 
-    positionX: number,
-    positionY: number,
-    isOpen: boolean,
-    children: React.ReactNode,
-    menuRef: React.RefObject<HTMLMenuElement>
+interface ContextMenuProps {
+    children: ReactNode,
+    top: number,
+    left: number,
+    className?: string,
 }
 
-export default function ContextMenu({ positionX, positionY, isOpen, children, menuRef }: Props) {
+function ContextMenu({children, top, left, className}: ContextMenuProps) {
+    const position_x = {
+        left: `${left}px`
+    }
+    const position_y = {
+        top: `${top}px`
+    }
     return (
-        <menu 
-        style={{
-            top: `${positionY + 2}px`,
-            left: `${positionX + 2}px`,
-        }}
-        className={`context-menu ${!isOpen ? "context-menu--hidden" : ""}`}
-        ref={menuRef}
-        >
-            { 
-                React.Children.map(children, child => (
-                    <div 
-                    key={child?.toString()}
-                    className="context-menu__element">
-                        { child }
-                    </div>
-                )) 
-            }
-        </menu>
+        <div className={`menu ${className}`} style={{...position_x, ...position_y}}>
+            {children}
+        </div>
     )
 }
+
+export default ContextMenu
