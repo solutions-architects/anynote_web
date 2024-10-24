@@ -1,14 +1,16 @@
-import "./note.scss"
+import "./note-edit.scss"
 import useContextMenu from "../../services/hooks/useContextMenu"
 import ContextMenu from "../../ui/components/ContextMenu/ContextMenu"
 import MenuButton from "../../ui/components/ContextMenuButton/MenuButton"
-function Note() {
-    const {clicked, setClicked, points, setPoints} = useContextMenu()
+
+
+export default function NoteEdit() {
+    const { clicked, setClicked, points, setPoints } = useContextMenu()
     const handleButtonClick = () => {
 
     }
     return (
-        <div className="note"
+        <div className="note-edit"
         onContextMenu={(e) => {
             e.preventDefault()
             setClicked(true)
@@ -30,5 +32,3 @@ function Note() {
         </div>
     )
 }
-
-export default Note

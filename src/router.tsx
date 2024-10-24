@@ -3,8 +3,8 @@ import Register from "./pages/Register/Register"
 import Workspace from "./pages/Workspace/Workspace"
 import Profile from "./pages/Profile/Profile"
 import Root from "./pages/Root/Root"
-import Landing from "./pages/Landing/Landing"
 import NoteEdit from "./pages/Note/NoteEdit"
+import Landing from "./pages/Landing/Landing"
 import { createBrowserRouter } from "react-router-dom"
 
 
