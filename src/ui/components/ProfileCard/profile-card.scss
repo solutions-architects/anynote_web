@@ -1,0 +1,36 @@
+@import "/src/ui/scss/variables";
+@import "/src/ui/scss/mixins";
+
+.profile-card {
+  width: 100%;
+  display: flex;
+  height: fit-content;
+  flex-direction: column;
+
+  &--underline {
+    border-bottom: 2px solid $border-default;
+  }
+
+  &__title {
+    @include text-regular;
+    @include text-lg;
+
+    color: $light;
+  }
+
+  &__body {
+    @include flex-between;
+
+    margin-bottom: 1rem;
+
+    &-data {
+      @include text-bold;
+      @include text-xl;
+    }
+
+    &-button-width {
+      width: 7rem;
+      height: 3rem;
+    }
+  }
+}

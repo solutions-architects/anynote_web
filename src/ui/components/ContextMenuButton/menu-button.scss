@@ -1,7 +1,7 @@
 @import "/src/ui/scss/variables";
 @import "/src/ui/scss/mixins";
 
-.button {
+.menu-button {
   @include text-regular;
   @include text-xl;
   @include flex-between;
