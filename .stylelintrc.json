@@ -5,7 +5,7 @@
     "at-rule-no-unknown": null,
     "scss/at-rule-no-unknown": true,
     "block-no-empty": true,
-    "unit-allowed-list": ["rem", "%", "px", "s", "fr", "vw", "vh"],
+    "unit-allowed-list": ["rem", "%", "px", "s", "fr", "vw", "vh", "deg"],
     "color-named": "never",
     "color-hex-length": "long",
     "selector-class-pattern": null,

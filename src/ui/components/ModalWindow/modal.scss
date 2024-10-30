@@ -1,0 +1,32 @@
+@import "/src/ui/scss/variables";
+@import "/src/ui/scss/mixins";
+
+.modal {
+  @include flex-full-center;
+
+  z-index: 99;
+  width: 100vw;
+  height: 100vh;
+  background-color: hsl(200deg 6% 9% / 50%);
+  position: fixed;
+  top:0;
+  left:0;
+  bottom:0;
+  transition: background-color 0.2s ease;
+
+  &__card {
+    z-index: 101;
+    background-color: $background-light;
+    border: 2px solid $border-default;
+    border-radius: 1rem;
+    box-sizing: border-box;
+    height: fit-content;
+    transition: background-color 0.2s ease;
+    opacity:1 !important;
+  }
+
+  &--background-filter {
+    backdrop-filter: blur(5px);
+    transition: background-color 0.2s ease;
+  }
+}

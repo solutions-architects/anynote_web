@@ -27,19 +27,19 @@ function MenuButton({children, className, onClick, iconLeft="settings", iconRigh
     const IconLeft = iconLeftMap[iconLeft]
     const IconRight = iconRightMap[iconRight]
     return (
-        <button className={`button ${className}`}
+        <button className={`menu-button ${className}`}
         onClick={onClick}>
-                <div className="button__container">
+                <div className="menu-button__container">
                     {iconLeft ? (
-                        <IconLeft className="button__icon button__icon--left"/>
+                        <IconLeft className="menu-button__icon button__icon--left"/>
                     ) : ("")}
 
                     { children }
                 </div>
 
                 {iconRight ? (
-                    <IconRight className="button__icon button__icon--right"/>
-                ) : (<div className="button__icon"></div>)}
+                    <IconRight className="menu-button__icon menu-button__icon--right"/>
+                ) : (<div className="menu-button__icon"></div>)}
 
         </button>
     )
