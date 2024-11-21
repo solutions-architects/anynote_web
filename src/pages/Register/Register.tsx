@@ -1,16 +1,16 @@
 import AuthCard from "../../ui/components/AuthCard/AuthCard"
 import { useState } from "react"
 import { register } from "../../services/api/auth"
-import { formErrors } from "../../types/auth"
+import { FormErrors } from "../../types/auth"
 import ControlledInput from "../../ui/components/TextInput/ControlledInput"
 import { validateEmail, validatePassword, validateUsername } from "../../utils/validation"
-import { AxiosError, isAxiosError } from "axios"
+import { isAxiosError } from "axios"
 
 export default function Register() {
     const [email, setEmail] = useState("")
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-    const [errors, setErrors] = useState<formErrors>({})
+    const [errors, setErrors] = useState<FormErrors>({})
 
     const submitForm = async () => {
         const emailError = validateEmail(email)
@@ -23,28 +23,29 @@ export default function Register() {
             password: passwordError,
         })
 
+        if (emailError || usernameError || passwordError) {
+            return
+        }
 
-        if (!emailError && !usernameError && !passwordError) {
-            try {
-                await register(email, username, password)
-            } catch (err) {
-                if (isAxiosError(err) && err.response && err.response.data) {
+        try {
+            const response = await register(email, username, password)
+        } catch (err) {
+            if (isAxiosError(err) && err.response?.data) {
 
-                    const errors = err.response.data
-                    setErrors({
-                        email: errors["email"],
-                        username: errors["username"],
-                        password: errors.password
-                    })
-                    console.log(err.response?.data)
-                    return
-                } 
-
+                const errors = err.response.data
                 setErrors({
-                    form: "An unknown error occured."
+                    email: errors.email,
+                    username: errors.username,
+                    password: errors.password
                 })
-                console.error(err)
-            }
+                console.log(err.response?.data)
+                return
+            } 
+
+            setErrors({
+                form: "Unexpected error occured. Check developer console for more information"
+            })
+            console.error(err)
         }
     }
     

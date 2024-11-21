@@ -1,6 +1,5 @@
 import { Note, Folder } from "../types/elements"
-import { capitalize, currentDateAsString } from "./helpers"
-import { NoteState, FolderState } from "../types/states"
+
 
 export function getElementIdxById(elements: Note[] | Folder[], id: number): number {
     let foundIdx = -1

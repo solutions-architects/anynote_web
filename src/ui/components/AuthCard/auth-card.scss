@@ -57,4 +57,10 @@
     &__link {
         @include text-link;
     }
+
+    &__error {
+        text-align: center;
+        color: $error;
+        margin-top: 0.5rem;
+    }
 }

@@ -5,6 +5,7 @@
     height: 2.75rem;
     border-radius: 1rem;
     user-select: none;
+    width: 100%;
 
     &--primary {
         @include text-regular;

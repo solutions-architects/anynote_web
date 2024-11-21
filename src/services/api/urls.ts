@@ -4,5 +4,14 @@ const tokenUrl = apiUrl + "token/"
 const tokenRefreshUrl = apiUrl + "token/refresh/"
 const tokenVerifyUrl = apiUrl + "token/verify/"
 const registerUrl = apiUrl + "auth/reg/"
+const emailVerifyUrl = apiUrl + "email-verify/"
 
-export { baseUrl, apiUrl, tokenUrl, tokenRefreshUrl, tokenVerifyUrl, registerUrl }
+export { 
+    baseUrl, 
+    apiUrl, 
+    tokenUrl, 
+    tokenRefreshUrl, 
+    tokenVerifyUrl, 
+    registerUrl, 
+    emailVerifyUrl 
+}

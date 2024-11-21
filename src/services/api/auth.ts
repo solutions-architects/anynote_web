@@ -1,5 +1,5 @@
-import axios, { Axios, AxiosError, AxiosResponse } from "axios";
-import { baseUrl, registerUrl } from "./constants";
+import axios, { AxiosResponse } from "axios";
+import { baseUrl, registerUrl, emailVerifyUrl } from "./urls";
 
 export const apiInstance = axios.create({
     baseURL: baseUrl,
@@ -15,6 +15,12 @@ export async function register(email: string, username: string, password: string
         password: password,
         password2: password,
     })
+
+    return result
+}
+
+export async function verifyEmail(token: string): Promise<AxiosResponse> {
+    const result = await apiInstance.get(emailVerifyUrl + "?token=" + token)
 
     return result
 }
