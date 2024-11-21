@@ -2,13 +2,13 @@ import "./controlled-input.scss"
 import { Link } from "react-router-dom"
 
 interface Props {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
-    onChange: Function,
+    onChange: React.ChangeEventHandler<HTMLInputElement>,
     label: string,
     value: string,
     sideLinkText?: string,
     sideLinkTo?: string,
     type?: "text" | "password",
+    errorText?: string,
 }
 
 
@@ -18,7 +18,8 @@ export default function ControlledInput({
     onChange, 
     type = "text", 
     sideLinkText = "", 
-    sideLinkTo = "" 
+    sideLinkTo = "",
+    errorText = "",
 }: Props) {
     return (
         <div className="controlled-input">
@@ -44,12 +45,19 @@ export default function ControlledInput({
             </div>
             <input
             value={value}
-            onChange={(e) => onChange(e)}
+            onChange={onChange}
             className="controlled-input__input"
             type={type}
             name={label.toLowerCase()} 
             id={label.toLowerCase()}
             />
+            {
+                errorText && (
+                    <div className="controlled-input__error">
+                        { errorText }
+                    </div>
+                )
+            }
         </div>
     )
 }
