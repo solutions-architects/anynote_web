@@ -46,7 +46,7 @@ export default function Note({ note, paddingLeftRem = 0 }: Props) {
 
     return (
         <div
-        className={`note`}
+        className={"note"}
         onDragStart={handleOnDragStart}
         onDragOver={handleOnDragOver}
         onDrop={handleOnDrop}

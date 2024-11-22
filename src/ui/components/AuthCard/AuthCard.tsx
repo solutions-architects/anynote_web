@@ -7,13 +7,16 @@ interface Props {
     onSubmit: React.MouseEventHandler<HTMLButtonElement>,
     children: React.ReactNode,
     type: "register" | "login",
+    errorText?: string,
 }
 
 export default function AuthCard({
     onSubmit,
     children,
     type,
+    errorText = "",
  }: Props) {
+    console.log(errorText)
 
     return (
         <div className={"auth-card"}>
@@ -43,6 +46,13 @@ export default function AuthCard({
                             : "Create account"
                         }
                     </Button>
+                    {
+                        errorText && (
+                            <div className="auth-card__error">
+                                { errorText }
+                            </div>
+                        )
+                    }
                 </div>
 
                 <div className="auth-card__footer">

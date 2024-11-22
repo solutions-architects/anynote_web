@@ -6,6 +6,7 @@
 
     display: flex;
     flex-direction: column;
+    background-color: $background-light !important;
 
     &__input {
         @include text-base;
@@ -40,5 +41,10 @@
 
     &__side-link {
         @include text-link;
+    }
+
+    &__error {
+        padding-top: 0.5rem;
+        color: $error;
     }
 }

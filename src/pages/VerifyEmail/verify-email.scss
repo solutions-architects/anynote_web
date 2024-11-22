@@ -1,0 +1,38 @@
+@import "/src/ui/scss/variables";
+@import "/src/ui/scss/mixins";
+
+.verify-email {
+    width: 100vw;
+    height: 90vh;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__main-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 25rem;
+        height: 14rem;
+        border-radius: 2rem;
+        padding-bottom: 1rem;
+    }
+
+    &__button {
+        width: 12rem;
+    }
+
+    &__message {
+        @include text-xl;
+        
+        margin-bottom: 1.5rem;
+        color: $accent;
+        text-align: center;
+
+        &--error {
+            color: $error;
+        }
+    }
+}

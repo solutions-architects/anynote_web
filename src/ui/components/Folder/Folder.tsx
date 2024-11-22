@@ -32,7 +32,7 @@ export default function Folder({ folder, paddingLeftRem = 0 }: Props) {
         const draggedElement: FolderType | NoteType = JSON.parse(e.dataTransfer.getData("element"))
         const isElementNote = isNote(draggedElement)
         
-        let action: setParentFolderAction = {
+        const action: setParentFolderAction = {
             id: draggedElement.id,
             newParentFolderId: folder.id,
         }
@@ -57,7 +57,7 @@ export default function Folder({ folder, paddingLeftRem = 0 }: Props) {
     return (
         <>
             <div
-            className={`folder`}
+            className={"folder"}
             onDragStart={handleOnDragStart}
             onDragOver={handleOnDragOver}
             onDrop={handleOnDrop}

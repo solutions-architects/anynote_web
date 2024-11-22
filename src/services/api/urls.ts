@@ -1,0 +1,10 @@
+export const baseUrl = "http://127.0.0.1:8000/"
+export const apiUrl = "api/"
+export const loginUrl = apiUrl + "token/"
+export const tokenRefreshUrl = apiUrl + "token/refresh/"
+export const tokenVerifyUrl = apiUrl + "token/verify/"
+export const registerUrl = apiUrl + "auth/reg/"
+export const emailVerifyUrl = apiUrl + "email-verify/"
+
+export const loggedInRedirectUrl = "/workspace/"
+export const logoutRedirectUrl = "/login/"
