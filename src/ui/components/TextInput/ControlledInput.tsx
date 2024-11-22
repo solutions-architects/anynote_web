@@ -7,7 +7,7 @@ interface Props {
     value: string,
     sideLinkText?: string,
     sideLinkTo?: string,
-    type?: "text" | "password",
+    type?: "text" | "email" | "password",
     errorText?: string,
 }
 

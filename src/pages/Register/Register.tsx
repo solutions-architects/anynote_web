@@ -67,6 +67,7 @@ export default function Register() {
             <ControlledInput 
             value={email}
             label="Email"
+            type="email"
             onChange={
                 (e: React.ChangeEvent<HTMLInputElement>) => {
                     setEmail(e.target.value)
@@ -75,6 +76,7 @@ export default function Register() {
             }
             errorText={errors.email}
             />
+
             <ControlledInput 
             value={username}
             label="Username"
@@ -86,6 +88,7 @@ export default function Register() {
             }
             errorText={errors.username}
             />
+
             <ControlledInput 
             value={password}
             label="Password"

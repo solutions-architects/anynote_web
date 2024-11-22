@@ -5,7 +5,6 @@ import { verifyEmail } from "../../services/api/auth";
 import { isAxiosError } from "axios";
 import Button from "../../ui/components/Button/Button";
 import { VerificationStatus } from "../../types/auth";
-import { loggedInRedirectUrl } from "../../services/api/urls";
 
 
 export default function VerifyEmail() {
@@ -49,30 +48,27 @@ export default function VerifyEmail() {
     return (
         <div className="verify-email">
             <div className="verify-email__main-container">
-                <div className={`verify-email__message ${verificationStatus.isSuccessful ? "" : "verify-email__message--error"}`}>
-                    { verificationStatus.message }
+                <div className={`verify-email__message ${verificationStatus.isSuccessful === false ? "verify-email__message--error" : ""}`}>
+                    { verificationStatus.message || "Verification pending..." }
                 </div>
-                <div className="verify-email__button">
-                    {
-                        verificationStatus.isSuccessful ? (
-                            <Button 
+                {
+                    verificationStatus.isSuccessful !== undefined ? (
+                        <div className="verify-email__button">
+                            <Button
                             onClick={() => {
-                                navigate("/login", { replace: true })
+                                if (verificationStatus.isSuccessful) {
+                                    navigate("/login")
+                                    return
+                                }
+
+                                navigate("/register")
                             }}
                             >
-                                Login
+                                { verificationStatus.isSuccessful ? "Login" : "Register" }
                             </Button>
-                        ) : (
-                            <Button 
-                            onClick={() => {
-                                navigate("/register", { replace: true })
-                            }}
-                            >
-                                Register
-                            </Button>
-                        )
-                    }
-                </div>
+                        </div> 
+                        ) : null
+                }
             </div>
         </div>
     )

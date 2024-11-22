@@ -7,7 +7,7 @@ const REFRESH_TOKEN_LIFETIME_DAYS = 1
 export const apiInstance = axios.create({
     baseURL: baseUrl,
     headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
     }
 })
 
