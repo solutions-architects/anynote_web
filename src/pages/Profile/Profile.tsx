@@ -4,23 +4,33 @@ import Dialogue from "../../ui/components/DialogueWindow/Dialogue.tsx";
 import { useSelector, useDispatch } from "react-redux";
 import ControlledInput from "../../ui/components/TextInput/ControlledInput.tsx";
 import { AppDispatch, RootState } from "../../services/state/store.ts";
-import {useState} from "react";
-import {openModal} from "../../services/state/slices/modalSlice.ts";
+import { useState } from "react";
+import { openModal } from "../../services/state/slices/modalSlice.ts";
+import { logout } from "../../services/api/auth.ts";
+import { useNavigate } from "react-router-dom";
+import { logoutRedirectUrl } from "../../services/api/urls.ts";
+
+
 export default function Profile() {
+    const navigate = useNavigate()
+
     const modals = {
         name: "name",
         email: "email",
         password: "password",
     }
+
     const dispatch = useDispatch<AppDispatch>()
     const [newName, setNewName] = useState("")
     const [newEmail, setNewEmail] = useState("")
     const [currentPassword, setCurrentPassword] = useState("")
     const [newPassword, setNewPassword] = useState("")
+
     const fakeData = {
         name: "Steve Rambo",
         email: "steveRambo@gmail.com",
     }
+
     const handleConfirm = () => {
         // what to do if user presses confirm in dialogue window
     }
@@ -28,7 +38,9 @@ export default function Profile() {
         // contact us logic
     }
     const handleLogOut = () => {
-        // logout logic
+        logout()
+
+        navigate(logoutRedirectUrl, { replace: true })
     }
     const openChangeNameModal = (modalId: string) => {
         dispatch(openModal(modalId))

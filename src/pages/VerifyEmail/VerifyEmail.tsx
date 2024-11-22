@@ -5,6 +5,7 @@ import { verifyEmail } from "../../services/api/auth";
 import { isAxiosError } from "axios";
 import Button from "../../ui/components/Button/Button";
 import { VerificationStatus } from "../../types/auth";
+import { loggedInRedirectUrl } from "../../services/api/urls";
 
 
 export default function VerifyEmail() {
@@ -20,7 +21,7 @@ export default function VerifyEmail() {
 
         const verify = async () => {
             try {
-                const result = await verifyEmail(token)
+                await verifyEmail(token)
                 setVerificationStatus({
                     isSuccessful: true,
                     message: "Email verified"
@@ -56,7 +57,7 @@ export default function VerifyEmail() {
                         verificationStatus.isSuccessful ? (
                             <Button 
                             onClick={() => {
-                                navigate(`/login`, { replace: true })
+                                navigate("/login", { replace: true })
                             }}
                             >
                                 Login
@@ -64,7 +65,7 @@ export default function VerifyEmail() {
                         ) : (
                             <Button 
                             onClick={() => {
-                                navigate(`/register`, { replace: true })
+                                navigate("/register", { replace: true })
                             }}
                             >
                                 Register

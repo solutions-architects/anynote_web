@@ -1,16 +1,25 @@
 import AuthCard from "../../ui/components/AuthCard/AuthCard"
 import { useState } from "react"
 import { register } from "../../services/api/auth"
+import { useNavigate } from "react-router-dom"
+import { loggedInRedirectUrl } from "../../services/api/urls"
 import { FormErrors } from "../../types/auth"
 import ControlledInput from "../../ui/components/TextInput/ControlledInput"
-import { validateEmail, validatePassword, validateUsername } from "../../utils/validation"
+import { validateEmail, validatePassword, validateUsername } from "../../utils/auth"
 import { isAxiosError } from "axios"
+import useAuth from "../../services/hooks/useAuth"
 
 export default function Register() {
     const [email, setEmail] = useState("")
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const [errors, setErrors] = useState<FormErrors>({})
+    const navigate = useNavigate()
+    const { isAuthenticated } = useAuth()
+
+    if (isAuthenticated) {
+        navigate(loggedInRedirectUrl, { replace: true })
+    }
 
     const submitForm = async () => {
         const emailError = validateEmail(email)
@@ -28,7 +37,7 @@ export default function Register() {
         }
 
         try {
-            const response = await register(email, username, password)
+            await register(email, username, password)
         } catch (err) {
             if (isAxiosError(err) && err.response?.data) {
 
