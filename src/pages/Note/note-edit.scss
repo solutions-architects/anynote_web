@@ -4,4 +4,17 @@
 .note-edit {
   width: 100%;
   height: 100%;
+
+  &__header {
+    @include text-5xl;
+
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+
+  &__divider {
+    border-bottom: 1px solid $border-default;
+    width: 100%;
+    margin-bottom: 2rem;
+  }
 }

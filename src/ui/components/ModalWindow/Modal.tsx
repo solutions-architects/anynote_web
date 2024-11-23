@@ -1,8 +1,8 @@
 import "./modal.scss"
-import {ReactNode} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {AppDispatch, RootState} from "../../../services/state/store.ts";
-import {closeModal} from "../../../services/state/slices/modalSlice.ts";
+import { ReactNode } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../services/state/store.ts";
+import { closeModal } from "../../../services/state/slices/modalSlice.ts";
 
 interface ModalProps {
     children: ReactNode,
@@ -11,6 +11,7 @@ interface ModalProps {
 }
 
 function Modal({children, className, modalId}: ModalProps) {
+
     const isOpen = useSelector((state: RootState) => (state.modals[modalId] ?? false))
     const dispatch = useDispatch<AppDispatch>()
     const handleContentClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {

@@ -31,8 +31,8 @@ export const router = createBrowserRouter([
         element: <Workspace />,
         children: [
             {
-                path: "",
-                element: <NoteEdit />
+                path: "/workspace/:noteId",
+                element: <NoteEdit />,
             },
             {
                 path: "profile",
