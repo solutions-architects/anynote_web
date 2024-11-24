@@ -6,6 +6,8 @@ import { useDispatch } from "react-redux"
 import { AppDispatch } from "../../../services/state/store"
 import { setParentFolderForNote } from "../../../services/state/slices/noteSlice"
 import { setParentFolderForFolder } from "../../../services/state/slices/folderSlice"
+import { useNavigate } from "react-router-dom";
+import { setCurrentNote } from "../../../services/state/slices/currentNoteSlice.ts";
 
 interface Props {
     note: NoteType,
@@ -14,6 +16,7 @@ interface Props {
 
 export default function Note({ note, paddingLeftRem = 0 }: Props) {
     const dispatch = useDispatch<AppDispatch>()
+    const navigate = useNavigate()
 
     const handleOnDragStart = (e: React.DragEvent<HTMLDivElement>) => {
         e.dataTransfer.setData("element", JSON.stringify(note))
@@ -43,6 +46,10 @@ export default function Note({ note, paddingLeftRem = 0 }: Props) {
         }
 
     }
+    const handleNoteClick = () => {
+        dispatch(setCurrentNote(note))
+        navigate(`/workspace/${note.id}`)
+    }
 
     return (
         <div
@@ -50,6 +57,7 @@ export default function Note({ note, paddingLeftRem = 0 }: Props) {
         onDragStart={handleOnDragStart}
         onDragOver={handleOnDragOver}
         onDrop={handleOnDrop}
+        onClick={handleNoteClick}
         draggable
         style={{paddingLeft: `${paddingLeftRem + 0.5}rem`}}
         >

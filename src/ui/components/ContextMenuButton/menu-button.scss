@@ -3,31 +3,31 @@
 
 .menu-button {
   @include text-regular;
-  @include text-xl;
+  @include text-base;
   @include flex-between;
 
-  min-width: 15rem;
+  min-width: max-content;
   color: $light;
   width: 100%;
   transition: all 0.1s ease;
   background-color: #242424;
   border: none;
-  padding: 1rem;
-  border-radius: inherit;
+  box-sizing: border-box;
+  padding: 0.5rem;
+  border-radius: 15px;
 
   &__icon {
     height: 1.5rem;
     width: 1.5rem;
 
     &--left {
-      margin-right: 1rem;
+      margin-right: 0.5rem;
     }
   }
 
   &__container {
     display: flex;
     flex-direction: row;
-    align-items: center;
   }
 
   &:hover {

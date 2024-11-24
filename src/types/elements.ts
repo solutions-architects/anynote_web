@@ -1,3 +1,5 @@
+import {Descendant} from "slate";
+
 export type Folder = {
     id: number,
     name: string,
@@ -14,5 +16,5 @@ export type Note = {
     editedAt?: string,
     isOpen: boolean,
     parentFolderId?: number,
-    contents: string,
+    contents: Descendant[],
 }
