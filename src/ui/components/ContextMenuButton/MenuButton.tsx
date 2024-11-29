@@ -1,5 +1,5 @@
 import "./menu-button.scss"
-import {ReactNode} from "react";
+import { ReactNode } from "react";
 import {
     UserCircleIcon as UserCircleSolid,
     Cog6ToothIcon as SettingsSolid,
@@ -11,10 +11,12 @@ const iconLeftMap = {
     settings: SettingsSolid,
     profile: UserCircleSolid
 }
+
 const iconRightMap = {
     arrowRight: ArrowRightOutline,
     check: CheckSolid,
 }
+
 interface MenuButtonProps {
     children: ReactNode,
     iconLeft?: "settings" | "profile",

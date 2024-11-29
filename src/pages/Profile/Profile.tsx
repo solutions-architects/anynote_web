@@ -2,7 +2,7 @@ import "./profile.scss"
 import ProfileCard from "../../ui/components/ProfileCard/ProfileCard.tsx";
 import Dialogue from "../../ui/components/DialogueWindow/Dialogue.tsx";
 import { useSelector, useDispatch } from "react-redux";
-import ControlledInput from "../../ui/components/TextInput/ControlledInput.tsx";
+import ControlledInput from "../../ui/components/ControlledInput/ControlledInput.tsx";
 import { AppDispatch, RootState } from "../../services/state/store.ts";
 import { useState } from "react";
 import { openModal } from "../../services/state/slices/modalSlice.ts";

@@ -96,7 +96,5 @@ export default function SideNav() {
             onDrop={handleOnDrop}
             />
         </nav>
-
-
     )
 }

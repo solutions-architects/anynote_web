@@ -34,7 +34,7 @@ interface IconButtonProps {
     linkTo?: string,
 }
 
-function IconButton({ icon, onClick, linkTo, size = "small" }: IconButtonProps) {
+export default function IconButton({ icon, onClick, linkTo, size = "small" }: IconButtonProps) {
     const Icon = iconMap[icon]
 
     return (
@@ -58,5 +58,3 @@ function IconButton({ icon, onClick, linkTo, size = "small" }: IconButtonProps) 
         )
     )
 }
-
-export default IconButton

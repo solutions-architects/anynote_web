@@ -1,40 +1,18 @@
 import { useEffect, useState } from "react"
-import { validateToken, refreshToken, logout } from "../api/auth"
+import { logout } from "../api/auth"
+import { tryAuth } from "../api/auth"
 
 const useAuth = () => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false)
+    const [isAuthenticated, setIsAuthenticated] = useState<boolean | undefined>()
 
     useEffect(() => {
-        const checkAuth = async() => {
-            const active = await isActiveToken()
-            if (!active) {
-                return
-            }
-
-            const result = await tryRefresh()
-            setIsAuthenticated(result)
+        const authenticate = async() => {
+            const success = await tryAuth()
+            setIsAuthenticated(success)
         }
 
-        checkAuth()
+        authenticate()
     }, [])
-
-    async function isActiveToken() {
-        try {
-            await validateToken()
-            return true
-        } catch {
-            return false
-        }
-    }
-
-    async function tryRefresh() {
-        try {
-            await refreshToken()
-            return true
-        } catch {
-            return false
-        }
-    }
 
     return { isAuthenticated, logout }
 }

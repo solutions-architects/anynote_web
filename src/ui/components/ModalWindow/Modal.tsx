@@ -10,7 +10,7 @@ interface ModalProps {
     modalId: string,
 }
 
-function Modal({children, className, modalId}: ModalProps) {
+export default function Modal({ children, className, modalId }: ModalProps) {
     const isOpen = useSelector((state: RootState) => (state.modals[modalId] ?? false))
     const dispatch = useDispatch<AppDispatch>()
     const handleContentClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
@@ -32,5 +32,3 @@ function Modal({children, className, modalId}: ModalProps) {
         </>
     )
 }
-
-export default Modal

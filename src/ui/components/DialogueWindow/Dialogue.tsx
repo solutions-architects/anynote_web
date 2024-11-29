@@ -1,10 +1,10 @@
 import "./dialogue.scss"
 import Modal from "../ModalWindow/Modal.tsx";
 import Button from "../Button/Button.tsx";
-import {ReactNode} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {AppDispatch, RootState} from "../../../services/state/store.ts";
-import {closeModal} from "../../../services/state/slices/modalSlice.ts";
+import { ReactNode } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../../services/state/store.ts";
+import { closeModal } from "../../../services/state/slices/modalSlice.ts";
 
 interface DialogueProps {
     title: string,
@@ -12,7 +12,8 @@ interface DialogueProps {
     onConfirm: React.MouseEventHandler<HTMLButtonElement>,
     modalId: string,
 }
-function Dialogue({title, children, onConfirm, modalId}: DialogueProps) {
+
+export default function Dialogue({ title, children, onConfirm, modalId }: DialogueProps) {
     const dispatch = useDispatch<AppDispatch>()
     const handleClose = () => {
         dispatch(closeModal(modalId))
@@ -32,5 +33,3 @@ function Dialogue({title, children, onConfirm, modalId}: DialogueProps) {
         </Modal>
     )
 }
-
-export default Dialogue

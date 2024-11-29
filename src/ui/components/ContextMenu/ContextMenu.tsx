@@ -1,5 +1,5 @@
 import "./context-menu.scss"
-import {ReactNode} from "react";
+import { ReactNode } from "react";
 
 interface ContextMenuProps {
     children: ReactNode,
@@ -8,7 +8,7 @@ interface ContextMenuProps {
     className?: string,
 }
 
-function ContextMenu({children, top, left, className}: ContextMenuProps) {
+export default function ContextMenu({ children, top, left, className }: ContextMenuProps) {
     const position_x = {
         left: `${left}px`
     }
@@ -21,5 +21,3 @@ function ContextMenu({children, top, left, className}: ContextMenuProps) {
         </div>
     )
 }
-
-export default ContextMenu

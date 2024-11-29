@@ -41,6 +41,21 @@ export async function register(email: string, username: string, password: string
     }
 }
 
+export async function tryAuth(): Promise<boolean> {
+    const validationResult = await validateToken()
+    console.log(validationResult)
+
+    if (validationResult.isError) {
+        const refreshResult = await refreshToken()
+
+        if (refreshResult.isError) {
+            return false
+        }
+    }
+
+    return true
+}
+
 export async function validateToken(): Promise<ApiResponse> {
     try {
         const result = await apiInstance.post(TOKEN_VERIFY_URL, {

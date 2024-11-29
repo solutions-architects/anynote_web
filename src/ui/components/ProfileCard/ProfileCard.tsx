@@ -1,4 +1,4 @@
-import "./profile-card.scss";
+import "./profile-card.scss"
 import Button from "../Button/Button.tsx"
 
 interface ProfileCardProps {
@@ -10,7 +10,14 @@ interface ProfileCardProps {
     className?: string,
 }
 
-function ProfileCard({cardTitle, buttonTitle, data, isUnderlined, onClick, className}: ProfileCardProps) {
+export default function ProfileCard({
+    cardTitle, 
+    buttonTitle, 
+    data, 
+    isUnderlined, 
+    onClick, 
+    className
+}: ProfileCardProps) {
     return (
         <div className={`profile-card ${isUnderlined ? "profile-card--underline" : ""} ${className}`}>
             <div className="card__title">{cardTitle}</div>
@@ -23,5 +30,3 @@ function ProfileCard({cardTitle, buttonTitle, data, isUnderlined, onClick, class
         </div>
     )
 }
-
-export default ProfileCard;

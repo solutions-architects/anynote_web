@@ -1,5 +1,5 @@
 import AuthCard from "../../ui/components/AuthCard/AuthCard"
-import ControlledInput from "../../ui/components/TextInput/ControlledInput"
+import ControlledInput from "../../ui/components/ControlledInput/ControlledInput"
 import { 
     emailErrorMessage, 
     countActiveInputErrors, 
@@ -14,7 +14,7 @@ export default function Register() {
         setErrors, 
         credentials, 
         setCredentials, 
-        submitPending 
+        isSubmitPending 
     } = useAuthForm("login")
 
     return (
@@ -24,7 +24,7 @@ export default function Register() {
         errorText={errors.form}
         errorsActive={countActiveInputErrors(errors)}
         canSubmit={canSubmit}
-        submitPending={submitPending}
+        submitPending={isSubmitPending}
         >
             <ControlledInput 
             value={credentials.email}

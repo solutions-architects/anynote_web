@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react"
 import { Credentials, FormErrors } from "../../types/auth"
 import { useNavigate } from "react-router-dom"
-import { credentialsFilled, credentialsHaveErrors, countActiveInputErrors, emailErrorMessage } from "../../utils/auth";
-import { REDIRECT_ON_REGISTER_URL } from "../api/urls";
-import { register, login } from "../api/auth";
-import { ApiResponse } from "../api/auth";
+import { credentialsFilled, credentialsHaveErrors, countActiveInputErrors, emailErrorMessage } from "../../utils/auth"
+import { REDIRECT_IF_LOGGED_IN_URL, REDIRECT_ON_REGISTER_URL } from "../api/urls"
+import { register, login } from "../api/auth"
+import { ApiResponse } from "../api/auth"
 
 const useAuthForm = (type: "login" | "register") => {
     const [credentials, setCredentials] = useState<Credentials>({})
@@ -57,7 +57,9 @@ const useAuthForm = (type: "login" | "register") => {
         }
 
         if (type === "register") {
-            navigate(REDIRECT_ON_REGISTER_URL, { replace: true })
+            navigate(REDIRECT_ON_REGISTER_URL + `?email=${credentials.email}`, { replace: true })
+        } else {
+            navigate(REDIRECT_IF_LOGGED_IN_URL, { replace: true })
         }
     }
 
@@ -67,12 +69,10 @@ const useAuthForm = (type: "login" | "register") => {
             credentialsAmount = 2
         }
 
-        if (!credentialsFilled(credentials, credentialsAmount)) {
-            setCanSubmit(false)
-            return
-        }
-
-        if (emailErrorMessage(credentials.email!)) {
+        if (!credentialsFilled(credentials, credentialsAmount)
+            || emailErrorMessage(credentials.email!)
+            || countActiveInputErrors(errors) > 0
+            || isSubmitPending) {
             setCanSubmit(false)
             return
         }
@@ -82,20 +82,10 @@ const useAuthForm = (type: "login" | "register") => {
             return
         }
 
-        if (countActiveInputErrors(errors) > 0) {
-            setCanSubmit(false)
-            return
-        }
-
-        if (isSubmitPending) {
-            setCanSubmit(false)
-            return
-        }
-
         setCanSubmit(true)
     }, [credentials, errors, isSubmitPending, type])
 
-    return { credentials, setCredentials, errors, setErrors, canSubmit, onSubmit, submitPending: isSubmitPending }
+    return { credentials, setCredentials, errors, setErrors, canSubmit, onSubmit, isSubmitPending }
 }
 
 export default useAuthForm
