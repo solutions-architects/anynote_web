@@ -15,3 +15,9 @@ export type VerificationStatus = {
     isSuccessful?: boolean,
     message?: string,
 }
+
+export type Credentials = {
+    email?: string,
+    username?: string,
+    password?: string,
+}

@@ -8,7 +8,7 @@ import { useState } from "react";
 import { openModal } from "../../services/state/slices/modalSlice.ts";
 import { logout } from "../../services/api/auth.ts";
 import { useNavigate } from "react-router-dom";
-import { logoutRedirectUrl } from "../../services/api/urls.ts";
+import { REDIRECT_ON_LOGOUT_URL } from "../../services/api/urls.ts";
 
 
 export default function Profile() {
@@ -40,7 +40,7 @@ export default function Profile() {
     const handleLogOut = () => {
         logout()
 
-        navigate(logoutRedirectUrl, { replace: true })
+        navigate(REDIRECT_ON_LOGOUT_URL, { replace: true })
     }
     const openChangeNameModal = (modalId: string) => {
         dispatch(openModal(modalId))

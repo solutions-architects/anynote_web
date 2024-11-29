@@ -1,6 +1,7 @@
+import { Credentials, FormErrors } from "../types/auth"
 
 
-export function validateEmail(email: string): string {
+export function emailErrorMessage(email: string): string {
     const isValid = !!String(email)
         .toLowerCase()
         .match(
@@ -14,7 +15,7 @@ export function validateEmail(email: string): string {
     return ""
 }
 
-export function validatePassword(password: string): string {
+export function passwordErrorMessage(password: string): string {
     if (password.length < 8) {
         return "Password should be at least 8 characters long"
     }
@@ -30,7 +31,7 @@ export function validatePassword(password: string): string {
     return ""
 }
 
-export function validateUsername(username: string): string {
+export function usernameErrorMessage(username: string): string {
     if (username.length < 3) {
         return "Username should be at least 3 characters long"
     }
@@ -57,4 +58,34 @@ export function getCookie(name: string) {
       .find((row) => row.startsWith(`${name}=`));
    
     return cookies ? cookies.split("=")[1] : null;
+}
+
+export function countActiveInputErrors(errors: FormErrors): number {
+    let activeErrors = Object.values(errors).filter(x => x).length
+
+    if (errors.form) {
+        activeErrors--
+    }
+
+    return activeErrors
+}
+
+export function credentialsFilled(credentials: Credentials, credentialsLength: number): boolean {
+    return credentialsLength === Object.values(credentials).filter(x => x).length
+}
+
+export function credentialsHaveErrors(credentials: Credentials): boolean {
+    if (credentials.email && emailErrorMessage(credentials.email)) {
+        return false
+    }
+
+    if (credentials.username && usernameErrorMessage(credentials.username)) {
+        return false
+    }
+
+    if (credentials.password && passwordErrorMessage(credentials.password)) {
+        return false
+    }
+
+    return true
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-import { isValidToken, refreshToken, logout } from "../api/auth"
+import { validateToken, refreshToken, logout } from "../api/auth"
 
-export default function useAuth() {
+const useAuth = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
 
     useEffect(() => {
@@ -20,7 +20,7 @@ export default function useAuth() {
 
     async function isActiveToken() {
         try {
-            await isValidToken()
+            await validateToken()
             return true
         } catch {
             return false
@@ -38,3 +38,5 @@ export default function useAuth() {
 
     return { isAuthenticated, logout }
 }
+
+export default useAuth

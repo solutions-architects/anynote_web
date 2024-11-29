@@ -1,104 +1,87 @@
 import AuthCard from "../../ui/components/AuthCard/AuthCard"
-import { useState } from "react"
-import { register } from "../../services/api/auth"
-import { useNavigate } from "react-router-dom"
-import { loggedInRedirectUrl } from "../../services/api/urls"
-import { FormErrors } from "../../types/auth"
 import ControlledInput from "../../ui/components/TextInput/ControlledInput"
-import { validateEmail, validatePassword, validateUsername } from "../../utils/auth"
-import { isAxiosError } from "axios"
-import useAuth from "../../services/hooks/useAuth"
+import { 
+    emailErrorMessage, 
+    passwordErrorMessage, 
+    usernameErrorMessage, 
+    countActiveInputErrors, 
+} from "../../utils/auth"
+import useAuthForm from "../../services/hooks/useAuthForm"
 
 export default function Register() {
-    const [email, setEmail] = useState("")
-    const [username, setUsername] = useState("")
-    const [password, setPassword] = useState("")
-    const [errors, setErrors] = useState<FormErrors>({})
-    const navigate = useNavigate()
-    const { isAuthenticated } = useAuth()
-
-    if (isAuthenticated) {
-        navigate(loggedInRedirectUrl, { replace: true })
-    }
-
-    const submitForm = async () => {
-        const emailError = validateEmail(email)
-        const usernameError = validateUsername(username)
-        const passwordError = validatePassword(password)
-
-        setErrors({
-            email: emailError,
-            username: usernameError,
-            password: passwordError,
-        })
-
-        if (emailError || usernameError || passwordError) {
-            return
-        }
-
-        try {
-            await register(email, username, password)
-        } catch (err) {
-            if (isAxiosError(err) && err.response?.data) {
-
-                const errors = err.response.data
-                setErrors({
-                    email: errors.email,
-                    username: errors.username,
-                    password: errors.password
-                })
-                console.log(err.response?.data)
-                return
-            } 
-
-            setErrors({
-                form: "Unexpected error occured. Check developer console for more information"
-            })
-            console.error(err)
-        }
-    }
     
+    const { 
+        canSubmit, 
+        onSubmit, 
+        errors, 
+        setErrors, 
+        credentials, 
+        setCredentials, 
+        submitPending 
+    } = useAuthForm("register")
+
     return (
         <AuthCard
         type="register"
-        onSubmit={submitForm}
+        onSubmit={onSubmit}
         errorText={errors.form}
+        errorsActive={countActiveInputErrors(errors)}
+        canSubmit={canSubmit && !submitPending}
+        submitPending={submitPending}
         >
             <ControlledInput 
-            value={email}
+            value={credentials.email}
             label="Email"
             type="email"
             onChange={
                 (e: React.ChangeEvent<HTMLInputElement>) => {
-                    setEmail(e.target.value)
+                    setCredentials({...credentials, email: e.target.value})
                     setErrors({...errors, email: ""})
                 }
             }
+            onBlur={() => {
+                if (credentials.email) {
+                    const emailError = emailErrorMessage(credentials.email)
+                    setErrors({...errors, email: emailError})
+                }
+            }}
             errorText={errors.email}
             />
 
             <ControlledInput 
-            value={username}
+            value={credentials.username}
             label="Username"
             onChange={
                 (e: React.ChangeEvent<HTMLInputElement>) => {
-                    setUsername(e.target.value)
+                    setCredentials({...credentials, username: e.target.value})
                     setErrors({...errors, username: ""})
                 }
             }
+            onBlur={() => {
+                if (credentials.username) {
+                    const usernameError = usernameErrorMessage(credentials.username)
+                    setErrors({...errors, username: usernameError})
+                }
+            }}
             errorText={errors.username}
             />
 
             <ControlledInput 
-            value={password}
+            value={credentials.password}
             label="Password"
             type="password"
             onChange={
                 (e: React.ChangeEvent<HTMLInputElement>) => {
-                    setPassword(e.target.value)
+                    setCredentials({...credentials, password: e.target.value})
                     setErrors({...errors, password: ""})
                 }
             }
+            onBlur={() => {
+                if (credentials.password) {
+                    const passwordError = passwordErrorMessage(credentials.password)
+                    setErrors({...errors, password: passwordError})
+                }
+            }}
             errorText={errors.password}
             />
         </AuthCard>
