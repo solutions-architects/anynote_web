@@ -14,6 +14,14 @@ export function getElementIdxById(elements: Note[] | Folder[], id: number): numb
     return foundIdx
 }
 
+export function getNoteParentFolder(folders: Folder[], note: Note): Folder | undefined {
+    if (!note.parentFolderId) {
+        return undefined
+    }
+
+    return folders[getElementIdxById(folders, note.parentFolderId!)]
+}
+
 export function getNestingLevel(folders: Folder[], parentFolderId?: number): number {
     let nestingLevel = 0
     let currentParentFolderId = parentFolderId

@@ -1,13 +1,12 @@
 import "./folder.scss"
 import Note from "../Note/Note"
-import { setParentFolderAction } from "../../../types/actions"
-import { Folder as FolderType, Note as NoteType } from "../../../types/elements"
+import { Folder as FolderType } from "../../../types/elements"
 import { FolderIcon, ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/24/outline"
 import { AppDispatch, RootState } from "../../../services/state/store"
 import { useSelector, useDispatch } from "react-redux"
-import { setParentFolderForNote } from "../../../services/state/slices/noteSlice"
-import { toggleOpen, setParentFolderForFolder } from "../../../services/state/slices/folderSlice"
-import { getNestingLevel, isInside, isNote } from "../../../utils/elements"
+import { toggleOpen } from "../../../services/state/slices/folderSlice"
+import { getNestingLevel } from "../../../utils/elements"
+import useDragAndDrop from "../../../services/hooks/useDragAndDrop"
 
 
 interface Props {
@@ -19,48 +18,16 @@ export default function Folder({ folder, paddingLeftRem = 0 }: Props) {
     const notes = useSelector((state: RootState) => state.notes.notes)
     const folders = useSelector((state: RootState) => state.folders.folders)
     const dispatch = useDispatch<AppDispatch>()
-    const handleOnDragStart = (e: React.DragEvent<HTMLDivElement>) => {
-        e.dataTransfer.setData("element", JSON.stringify(folder))
-    }
-
-    const handleOnDragOver = (e: React.DragEvent<HTMLDivElement>) => {
-        e.preventDefault()
-        e.stopPropagation()
-    }
-
-    const handleOnDrop = (e: React.DragEvent<HTMLDivElement>) => {
-        const draggedElement: FolderType | NoteType = JSON.parse(e.dataTransfer.getData("element"))
-        const isElementNote = isNote(draggedElement)
-        
-        const action: setParentFolderAction = {
-            id: draggedElement.id,
-            newParentFolderId: folder.id,
-        }
-
-        if (!isElementNote && draggedElement.id === folder.id) {
-            return
-        }
-
-        if (!isElementNote && isInside(folders, draggedElement, folder)) {
-            return
-        }
-
-
-        if (isElementNote) {
-            dispatch(setParentFolderForNote(action))
-        } else {
-            dispatch(setParentFolderForFolder(action))
-        }
-
-    }
+    
+    const { onDragStart, onDragOver, onDrop } = useDragAndDrop(folder)
 
     return (
         <>
             <div
             className={"folder"}
-            onDragStart={handleOnDragStart}
-            onDragOver={handleOnDragOver}
-            onDrop={handleOnDrop}
+            onDragStart={onDragStart}
+            onDragOver={onDragOver}
+            onDrop={onDrop}
             draggable
             onClick={() => dispatch(toggleOpen(folder.id))}
             style={{paddingLeft: `${paddingLeftRem + 0.5}rem`}}
