@@ -7,24 +7,29 @@ import NoteEdit from "./pages/Note/NoteEdit"
 import Landing from "./pages/Landing/Landing"
 import VerifyEmail from "./pages/VerifyEmail/VerifyEmail"
 import { createBrowserRouter } from "react-router-dom"
+import RegisterConfirm from "./pages/RegisterConfirm/RegisterConfirm"
 
 
 export const router = createBrowserRouter([
     {
         path: "/",
-        element: <Root />
+        element: <Root />,
     },
     {
         path: "/landing",
-        element: <Landing />
+        element: <Landing />,
     },
     {
         path: "/login",
-        element: <Login />
+        element: <Login />,
     },
     {
         path: "/register",
-        element: <Register />
+        element: <Register />,
+    },
+    {
+        path: "/register-confirm",
+        element: <RegisterConfirm />,
     },
     {
         path: "/workspace",
@@ -36,12 +41,12 @@ export const router = createBrowserRouter([
             },
             {
                 path: "profile",
-                element: <Profile />
+                element: <Profile />,
             },
         ]
     },
     {
         path: "/verify-email",
-        element: <VerifyEmail />
+        element: <VerifyEmail />,
     }
 ])

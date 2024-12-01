@@ -6,6 +6,7 @@
     border-radius: 1rem;
     user-select: none;
     width: 100%;
+    color: $background-bright;
 
     &--primary {
         @include text-regular;
@@ -16,11 +17,15 @@
         transition: all 0.1s ease;
 
         &:hover {
-            background-color: $accent-light;
-        }
-
-        &:active {
             background-color: $accent-dark;
+            cursor: pointer;
+        }
+    
+        &:disabled {
+            color: $light;
+            background-color: $accent !important;
+            cursor: default !important;
+            opacity: 0.4;
         }
     }
 
@@ -30,19 +35,11 @@
 
         background-color: $background;
         border: 2px solid $accent;
-        color: $light;
         transition: all 0.1s ease;
+        color: $light;
 
         &:hover {
             border-color: $accent-light;
         }
-
-        &:active {
-            border-color: $accent-dark;
-        }
-    }
-
-    &:hover {
-        cursor: pointer;
     }
 }

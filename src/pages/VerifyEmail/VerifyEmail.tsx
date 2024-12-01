@@ -8,9 +8,9 @@ import { VerificationStatus } from "../../types/auth";
 
 
 export default function VerifyEmail() {
-    const [searchParams] = useSearchParams();
+    const [searchParams] = useSearchParams()
     const navigate = useNavigate()
-    const [verificationStatus, setVerificationStatus] = useState<VerificationStatus>({});
+    const [verificationStatus, setVerificationStatus] = useState<VerificationStatus>({})
     const token = searchParams.get("token")
 
     useEffect(() => {

@@ -1,4 +1,6 @@
 import "./context-menu.scss"
+
+import { ReactNode } from "react";
 import ContextMenuCard from "../ContextMenuCard/ContextMenuCard.tsx";
 import { MenuButton } from "../ContextMenuButton/MenuButton.tsx";
 import React, { useEffect, useRef, useState } from "react";
@@ -12,10 +14,13 @@ interface ContextMenuProps {
     editor: BaseEditor & ReactEditor,
 }
 
-function ContextMenu({points, editor}: ContextMenuProps) {
-
-    const emptyFunction = () => {
+export default function ContextMenu({ children, top, left, className }: ContextMenuProps) {
+    const position_x = {
+        left: `${left}px`
     }
+    const position_y = {
+        top: `${top}px`
+    const emptyFunction = () => {}
     const ref = useRef<HTMLDivElement | null>(null)
     const [submenuPosition, setSubmenuPosition] = useState({x: 0, y: 0})
 
@@ -50,6 +55,3 @@ function ContextMenu({points, editor}: ContextMenuProps) {
         </ContextMenuCard>
     )
 }
-
-
-export default ContextMenu

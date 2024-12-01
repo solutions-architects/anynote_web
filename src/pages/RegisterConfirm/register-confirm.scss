@@ -1,0 +1,42 @@
+@import "/src/ui/scss/variables";
+@import "/src/ui/scss/mixins";
+
+.register-confirm {
+    width: 100vw;
+    height: 90vh;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__main-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 25rem;
+        height: 14rem;
+        border-radius: 2rem;
+        padding-bottom: 1rem;
+    }
+
+    &__header {
+        @include text-4xl;
+
+        color: $light;
+        margin-bottom: 1.5rem;
+    }
+
+    &__message {
+        @include text-xl;
+
+        margin-bottom: 1.5rem;
+        text-align: center;
+        color: $light;
+    }
+
+    &__button {
+        width: 200px;
+        margin-top: 0.5rem;
+    }
+}

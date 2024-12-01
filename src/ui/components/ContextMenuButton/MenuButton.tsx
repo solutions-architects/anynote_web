@@ -1,5 +1,5 @@
 import "./menu-button.scss"
-import {forwardRef, ReactNode, useRef, useState} from "react";
+import { forwardRef, ReactNode, useRef, useState } from "react";
 import {
     UserCircleIcon as UserCircleSolid,
     Cog6ToothIcon as SettingsSolid,
@@ -27,10 +27,12 @@ const iconLeftMap = {
     h3: H3,
     trash: trash,
 }
+
 const iconRightMap = {
     arrowRight: ArrowRightOutline,
     check: CheckSolid,
 }
+
 interface MenuButtonProps {
     children?: ReactNode,
     iconLeft?: "settings" | "profile" | "bold" | "italic" | "underline" | "strikethrough" | "h1" | "h2" | "h3" | "trash",

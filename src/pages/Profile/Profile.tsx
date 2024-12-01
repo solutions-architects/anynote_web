@@ -2,13 +2,13 @@ import "./profile.scss"
 import ProfileCard from "../../ui/components/ProfileCard/ProfileCard.tsx";
 import Dialogue from "../../ui/components/DialogueWindow/Dialogue.tsx";
 import { useSelector, useDispatch } from "react-redux";
-import ControlledInput from "../../ui/components/TextInput/ControlledInput.tsx";
+import ControlledInput from "../../ui/components/ControlledInput/ControlledInput.tsx";
 import { AppDispatch, RootState } from "../../services/state/store.ts";
 import { useState } from "react";
 import { openModal } from "../../services/state/slices/modalSlice.ts";
 import { logout } from "../../services/api/auth.ts";
 import { useNavigate } from "react-router-dom";
-import { logoutRedirectUrl } from "../../services/api/urls.ts";
+import { REDIRECT_ON_LOGOUT_URL } from "../../services/api/urls.ts";
 
 
 export default function Profile() {
@@ -40,7 +40,7 @@ export default function Profile() {
     const handleLogOut = () => {
         logout()
 
-        navigate(logoutRedirectUrl, { replace: true })
+        navigate(REDIRECT_ON_LOGOUT_URL, { replace: true })
     }
     const openChangeNameModal = (modalId: string) => {
         dispatch(openModal(modalId))

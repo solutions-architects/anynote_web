@@ -7,7 +7,10 @@ interface Props {
     onSubmit: React.MouseEventHandler<HTMLButtonElement>,
     children: React.ReactNode,
     type: "register" | "login",
+    errorsActive?: number,
     errorText?: string,
+    canSubmit?: boolean,
+    submitPending?: boolean,
 }
 
 export default function AuthCard({
@@ -15,8 +18,21 @@ export default function AuthCard({
     children,
     type,
     errorText = "",
+    errorsActive = 0,
+    canSubmit = true,
+    submitPending = false,
  }: Props) {
-    console.log(errorText)
+    
+    function calculateContainerHeight(): number {
+        let height = 28
+        if (type === "register") {
+            height += 5
+        }
+
+        height += errorsActive
+
+        return height
+    }
 
     return (
         <div className={"auth-card"}>
@@ -26,7 +42,7 @@ export default function AuthCard({
             <div className="auth-card__outer-container">
                 <div 
                 className={"auth-card__inner-container"}
-                style={{ height: type === "login" ? "28rem" : "32rem" }}
+                style={{ height: `${calculateContainerHeight()}rem`}}
                 >
                     <div className="auth-card__header">
                         {
@@ -36,16 +52,6 @@ export default function AuthCard({
                         }
                     </div>
                     { children }
-                    <Button 
-                    className="auth-card__button"
-                    onClick={onSubmit}
-                    >
-                        { 
-                            type === "login"
-                            ? "Sign in"
-                            : "Create account"
-                        }
-                    </Button>
                     {
                         errorText && (
                             <div className="auth-card__error">
@@ -53,13 +59,25 @@ export default function AuthCard({
                             </div>
                         )
                     }
+                    <Button 
+                    className="auth-card__button"
+                    onClick={onSubmit}
+                    disabled={!canSubmit}
+                    loading={submitPending}
+                    >
+                        { 
+                            type === "login"
+                            ? "Sign in"
+                            : "Create account"
+                        }
+                    </Button>
                 </div>
 
                 <div className="auth-card__footer">
                     {
                         type === "login"
-                        ? "New to anynote?"
-                        : "Already have an account?"
+                        ? "New to anynote? "
+                        : "Already have an account? "
                     }
                     &nbsp;
                     <Link 

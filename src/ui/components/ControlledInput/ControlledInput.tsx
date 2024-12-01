@@ -2,24 +2,25 @@ import "./controlled-input.scss"
 import { Link } from "react-router-dom"
 
 interface Props {
-    onChange: React.ChangeEventHandler<HTMLInputElement>,
     label: string,
-    value: string,
+    value?: string,
     sideLinkText?: string,
     sideLinkTo?: string,
     type?: "text" | "email" | "password",
     errorText?: string,
+    onChange: React.ChangeEventHandler<HTMLInputElement>,
+    onBlur?: React.FocusEventHandler<HTMLInputElement>,
 }
-
 
 export default function ControlledInput({ 
     label, 
-    value, 
+    value = "", 
     onChange, 
     type = "text", 
     sideLinkText = "", 
     sideLinkTo = "",
     errorText = "",
+    onBlur,
 }: Props) {
     return (
         <div className="controlled-input">
@@ -46,10 +47,11 @@ export default function ControlledInput({
             <input
             value={value}
             onChange={onChange}
-            className="controlled-input__input"
+            className={`controlled-input__input${errorText ? " controlled-input__input--error" : ""}`}
             type={type}
             name={label.toLowerCase()} 
             id={label.toLowerCase()}
+            onBlur={onBlur}
             />
             {
                 errorText && (

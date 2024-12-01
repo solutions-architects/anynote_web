@@ -48,10 +48,10 @@
 
         flex-direction: row;
         background-color: $background-bright;
-        width: 95%;
+        width: 98%;
         height: 3.5rem;
         border-radius: 0.75rem;
-        margin: 0.6rem 0;
+        margin: 0.4rem 0;
     }
 
     &__link {
@@ -59,8 +59,10 @@
     }
 
     &__error {
+        @include text-sm;
+
+        margin-bottom: -0.5rem;
         text-align: center;
         color: $error;
-        margin-top: 0.5rem;
     }
 }

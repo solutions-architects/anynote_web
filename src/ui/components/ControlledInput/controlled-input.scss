@@ -20,6 +20,10 @@
         border: 1px solid #656565;
         border-radius: 0.75rem;
         transition: all 0.25s ease;
+
+        &--error {
+            border-color: $error;
+        }
         
         &:focus {
             outline: none !important;
@@ -44,6 +48,8 @@
     }
 
     &__error {
+        @include text-sm;
+
         padding-top: 0.5rem;
         color: $error;
     }
