@@ -1,11 +1,9 @@
 import "./context-menu.scss"
-
-import { ReactNode } from "react";
-import ContextMenuCard from "../ContextMenuCard/ContextMenuCard.tsx";
-import { MenuButton } from "../ContextMenuButton/MenuButton.tsx";
-import React, { useEffect, useRef, useState } from "react";
-import { BaseEditor } from "slate";
-import { ReactEditor } from "slate-react";
+import ContextMenuCard from "../ContextMenuCard/ContextMenuCard.tsx"
+import { MenuButton } from "../ContextMenuButton/MenuButton.tsx"
+import { useEffect, useRef, useState } from "react"
+import { BaseEditor } from "slate"
+import { ReactEditor } from "slate-react"
 import { ClearAllFormatting, toggleMark } from "../../../utils/editor.ts"
 import { HeadingSubMenu } from "./SubMenus/HeadingSubMenu.tsx"
 
@@ -14,13 +12,8 @@ interface ContextMenuProps {
     editor: BaseEditor & ReactEditor,
 }
 
-export default function ContextMenu({ children, top, left, className }: ContextMenuProps) {
-    const position_x = {
-        left: `${left}px`
-    }
-    const position_y = {
-        top: `${top}px`
-    const emptyFunction = () => {}
+function ContextMenu({points, editor}: ContextMenuProps) {
+
     const ref = useRef<HTMLDivElement | null>(null)
     const [submenuPosition, setSubmenuPosition] = useState({x: 0, y: 0})
 
@@ -39,7 +32,7 @@ export default function ContextMenu({ children, top, left, className }: ContextM
 
     return (
         <ContextMenuCard top={points.y} left={points.x}>
-            <MenuButton onClick={emptyFunction} iconLeft="h1" isSubmenu={true} iconRight="arrowRight"
+            <MenuButton onClick={() => {}} iconLeft="h1" isSubmenu={true} iconRight="arrowRight"
                         submenu={<HeadingSubMenu editor={editor} pointsSub={submenuPosition}/>} ref={ref}>
                         Headings</MenuButton>
             <MenuButton onClick={() => toggleMark(editor, "bold")}
@@ -55,3 +48,6 @@ export default function ContextMenu({ children, top, left, className }: ContextM
         </ContextMenuCard>
     )
 }
+
+
+export default ContextMenu
