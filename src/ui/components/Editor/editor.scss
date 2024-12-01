@@ -1,0 +1,10 @@
+@import "/src/ui/scss/variables";
+@import "/src/ui/scss/mixins";
+
+.editor {
+  @include text-xl;
+
+  outline: none;
+  border-radius: 1rem;
+  height: 70%;
+}

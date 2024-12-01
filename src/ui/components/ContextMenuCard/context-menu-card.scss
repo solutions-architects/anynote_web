@@ -1,0 +1,15 @@
+@import "/src/ui/scss/variables";
+@import "/src/ui/scss/mixins";
+
+// It's better to keep context-menu properties such as border-radius and padding in px to not to break a position of
+// submenu (all of which calculated in px for convenience)
+.menu {
+  position: fixed;
+  width: max-content;
+  background-color: #242424;
+  border-radius: 10px;
+  box-sizing: border-box;
+  padding: 10px;
+  outline: 1px solid $border-default;
+  z-index: 1000;
+}

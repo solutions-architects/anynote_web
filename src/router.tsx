@@ -36,7 +36,7 @@ export const router = createBrowserRouter([
         element: <Workspace />,
         children: [
             {
-                path: "",
+                path: "/workspace/:noteId",
                 element: <NoteEdit />,
             },
             {
