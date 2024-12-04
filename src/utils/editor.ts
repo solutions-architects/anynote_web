@@ -1,5 +1,6 @@
-import { Descendant, Editor, Text, Transforms } from "slate"
-import { marked } from "marked"
+import {BaseEditor, Descendant, Editor, Text, Transforms} from "slate"
+import {marked, Token} from "marked"
+import {ReactEditor} from "slate-react";
 
 function isText(node: Descendant): node is Text {
     return !("type" in node)
@@ -7,7 +8,7 @@ function isText(node: Descendant): node is Text {
 
 // Every function here is working as expected and mostly stolen from the official slate docs.
 // If your editor marks half of the code here as error - idk how to fix it. (mine does)
-export function slateToMarkdown(nodes: Descendant[]): string {
+export function slateToMarkdown(nodes: any): string {
     let markdown = ""
 
     nodes.forEach((node) => {
@@ -49,7 +50,7 @@ export function slateToMarkdown(nodes: Descendant[]): string {
     return markdown.trim()
 }
 
-function serializeText(node: Text): string {
+function serializeText(node: any): string {
     let text = node.text || ""
 
     if (node.bold) text = `**${text}**`
@@ -63,7 +64,7 @@ function serializeText(node: Text): string {
     return text;
 }
 
-export function toggleMark(editor, format) {
+export function toggleMark(editor: BaseEditor & ReactEditor, format: string) {
     const isActive = isMarkActive(editor, format)
 
     if (["h1", "h2", "h3"].includes(format)) {
@@ -81,13 +82,13 @@ export function toggleMark(editor, format) {
     }
 }
 
-export function isMarkActive(editor, format){
-    const marks = Editor.marks(editor)
+export function isMarkActive(editor: BaseEditor & ReactEditor, format: string){
+    const marks: any = Editor.marks(editor)
     return marks ? marks[format] === true : false
 }
 
 // Function 90% stolen from off slate docs
-export function ClearAllFormatting(editor) {
+export function ClearAllFormatting(editor: BaseEditor & ReactEditor) {
     if (!editor.selection) return
 
     const marks = Editor.marks(editor);
@@ -111,8 +112,8 @@ export function markdownToSlate(markdown: string): Descendant[] {
     return tokensToSlate(tokens);
 }
 
-function tokensToSlate(tokens): Descendant[] {
-    const slateNodes: Descendant[] = [];
+function tokensToSlate(tokens: Token[]): Descendant[] {
+    const slateNodes: any = [];
 
     tokens.forEach((token) => {
         switch (token.type) {
@@ -173,7 +174,7 @@ function tokensToSlate(tokens): Descendant[] {
 function parseInline(text: string): Descendant[] {
     const inlineLexer = new marked.Lexer();
     const inlineTokens = inlineLexer.inlineTokens(text); // Parse the inline text
-    const inlineNodes: Descendant[] = [];
+    const inlineNodes: any = [];
 
     inlineTokens.forEach((token) => {
         switch (token.type) {
@@ -204,7 +205,7 @@ function parseInline(text: string): Descendant[] {
 function parseFormattedText(text: string, format: Record<string, boolean>): Descendant[] {
     const inlineLexer = new marked.Lexer();
     const nestedTokens = inlineLexer.inlineTokens(text);
-    const formattedNodes: Descendant[] = [];
+    const formattedNodes: any[] = [];
 
     nestedTokens.forEach((token) => {
         if (token.type === "text") {

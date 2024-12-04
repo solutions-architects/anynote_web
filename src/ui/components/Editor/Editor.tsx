@@ -1,5 +1,5 @@
 import "./editor.scss"
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { createEditor, Descendant, Transforms } from "slate"
 import { Slate, Editable, withReact } from "slate-react"
 import useContextMenu from "../../../services/hooks/useContextMenu.ts";
@@ -13,13 +13,12 @@ interface CustomEditorProps {
     note: Note
 }
 
-function CustomEditor({ note }: CustomEditorProps) {
+function Editor({ note }: CustomEditorProps) {
 
     const { clicked, setClicked, points, setPoints } = useContextMenu()
-    const [editor, setEditor] = useState(() => withReact(createEditor()))
-    const [value, setValue] = useState<Descendant[]>(note.contents)
+    const [editor] = useState(() => withReact(createEditor()))
     // If the note is new (initial value is required for editor to exist)
-    const initialValue = [
+    const initialValue: Descendant[] = [
         {
             type: "paragraph",
             children: [{ text: "" }],
@@ -37,17 +36,16 @@ function CustomEditor({ note }: CustomEditorProps) {
 
     // Rendering inline formatting (for blocks we will use renderBlock, which renders entire react component)
     // for more detailed info -> see slate docs
-    const renderLeaf = useCallback(props => {
+    const renderLeaf = useCallback((props: any) => {
         return <Leaf {...props} />
     }, [])
 
-    const handleChange = (newValue) => {
-        setValue(newValue)
+    const handleChange = (newValue: Descendant[]) => {
         dispatch(updateContents({id: note.id, contents: newValue}))
     }
 
     return (
-        <Slate editor={editor} initialValue={initialValue} value={value} onChange={handleChange} onValueChange={handleChange}>
+        <Slate editor={editor} initialValue={initialValue} onChange={handleChange} onValueChange={handleChange}>
             <Editable className="editor"
             placeholder="Put here your note!"
             renderLeaf={renderLeaf}
@@ -66,5 +64,5 @@ function CustomEditor({ note }: CustomEditorProps) {
 
     )
 }
-export default CustomEditor
+export default Editor
 

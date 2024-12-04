@@ -48,6 +48,7 @@ export default function Note({ note, paddingLeftRem = 0 }: Props) {
     }
     const handleNoteClick = () => {
         dispatch(setCurrentNote(note))
+
         navigate(`/workspace/${note.id}`)
     }
 

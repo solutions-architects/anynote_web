@@ -1,4 +1,3 @@
-import React from "react";
 import ContextMenuCard from "../../ContextMenuCard/ContextMenuCard.tsx";
 import { MenuButton } from "../../ContextMenuButton/MenuButton.tsx";
 import { toggleMark } from "../../../../utils/editor.ts";

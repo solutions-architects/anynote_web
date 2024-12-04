@@ -26,17 +26,19 @@ const iconLeftMap = {
     h2: H2,
     h3: H3,
     trash: trash,
+    default: "",
 }
 
 const iconRightMap = {
     arrowRight: ArrowRightOutline,
     check: CheckSolid,
+    default: "",
 }
 
 interface MenuButtonProps {
     children?: ReactNode,
-    iconLeft?: "settings" | "profile" | "bold" | "italic" | "underline" | "strikethrough" | "h1" | "h2" | "h3" | "trash",
-    iconRight?: "arrowRight" | "check",
+    iconLeft?: "settings" | "profile" | "bold" | "italic" | "underline" | "strikethrough" | "h1" | "h2" | "h3" | "trash" | "default",
+    iconRight?: "arrowRight" | "check" | "default",
     onClick: React.MouseEventHandler<HTMLButtonElement>,
     className?: string,
     isSubmenu?: boolean,
@@ -44,8 +46,8 @@ interface MenuButtonProps {
 }
 
 export const MenuButton = forwardRef<HTMLDivElement, MenuButtonProps>(({children, className, onClick, iconLeft, iconRight, isSubmenu, submenu}, ref) => {
-    const IconLeft = iconLeftMap[iconLeft]
-    const IconRight = iconRightMap[iconRight]
+    const IconLeft = iconLeftMap[iconLeft ?? "default"]
+    const IconRight = iconRightMap[iconRight ?? "default"]
     const delayTimer = useRef<NodeJS.Timeout | undefined>(undefined)
     const handleMouseEnter = () => {
         if (delayTimer.current) {
