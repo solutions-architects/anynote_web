@@ -1,4 +1,3 @@
-import "./context-menu.scss"
 import ContextMenuCard from "../ContextMenuCard/ContextMenuCard.tsx"
 import { MenuButton } from "../ContextMenuButton/MenuButton.tsx"
 import { useEffect, useRef, useState } from "react"
@@ -15,7 +14,7 @@ interface ContextMenuProps {
 function ContextMenu({points, editor}: ContextMenuProps) {
 
     const ref = useRef<HTMLDivElement | null>(null)
-    const [submenuPosition, setSubmenuPosition] = useState({x: 0, y: 0})
+    const [submenuPosition, setSubmenuPosition] = useState<{ x: number, y: number }>({x: 0, y: 0})
 
     useEffect(() => {
         if (ref.current) {
